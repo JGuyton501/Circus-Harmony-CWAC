@@ -6,6 +6,8 @@ var app = app || angular.module('circusApp', [])
 
 	$scope.init = function(){
 
+		$scope.timesheetUrl = 'http://www.json-generator.com/api/json/get/cfnZEWzpFe?indent=2';
+
 		$scope.timesheet = null;
 		$scope.today = moment();
 		$scope.from = moment().subtract(7, 'days');
@@ -21,11 +23,20 @@ var app = app || angular.module('circusApp', [])
 		$('#schedule-to-date').val($scope.renderDate($scope.to, 'YYYY-MM-DD'));
 	};
 
+	$scope.getTimeframe = function(){
+		$scope.from = $('#schedule-from-date').val();
+		$scope.to = $('#schedule-to-date').val();
+	};
+
 	$scope.getTimesheet = function(){
+
+		$scope.getTimeframe();
 
 		var config = {};
 		config.method = 'get';
-		config.url = 'http://www.json-generator.com/api/json/get/cfnZEWzpFe?indent=2';
+		config.url = $scope.timesheetUrl + '&from='+$scope.from+'&to='+$scope.to;
+
+		console.log(config.url);
 
 		config.headers = {
 			'Accept':'application/json',
@@ -42,6 +53,11 @@ var app = app || angular.module('circusApp', [])
 			console.log(response);
 		}); 
 
+	};
+
+
+	$scope.updateTimesheet = function(){
+		$scope.getTimesheet();
 	};
 
 

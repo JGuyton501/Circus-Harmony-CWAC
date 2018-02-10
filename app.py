@@ -16,7 +16,7 @@ import models
 
 @app.route('/')
 def main():
-    return render_template('base.html')
+    return render_template('home.html')
 
 @app.route('/admin/shift')
 def createShift():
@@ -60,6 +60,5 @@ def getDashboard():
 @app.route('/dbtest')
 def getDBStuff():
     return 'oops'
-    
 if __name__ == '__main__':
     app.run()
