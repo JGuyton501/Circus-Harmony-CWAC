@@ -1,13 +1,27 @@
-angular.module('circusApp', [])
+var app = app || angular.module('circusApp', [])
 .config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
 .controller('ScheduleController', function($scope, $http) {
 
-	$scope.timesheet = null;
+	$scope.init = function(){
 
+		$scope.timesheet = null;
+		$scope.today = moment();
+		$scope.from = moment().subtract(7, 'days');
+		$scope.to = moment().add(7, 'days');
 
-		$scope.getTimesheet = function(){
+		$scope.setDefaultDates();
+		$scope.getTimesheet();
+
+	}
+
+	$scope.setDefaultDates = function(){
+		$('#schedule-from-date').val($scope.renderDate($scope.from, 'YYYY-MM-DD'));
+		$('#schedule-to-date').val($scope.renderDate($scope.to, 'YYYY-MM-DD'));
+	};
+
+	$scope.getTimesheet = function(){
 
 		var config = {};
 		config.method = 'get';
@@ -31,10 +45,15 @@ angular.module('circusApp', [])
 	};
 
 
-	$scope.momentDate = function(date, format){
-		return moment(date).format(format);
+	$scope.renderDate = function(date, format){
+		if (date instanceof moment){
+			return date.format(format);			
+		} else {
+			return moment(date).format(format);			
+		}
 	};
 
-	$scope.getTimesheet();
+	$scope.init();
+
 
 });

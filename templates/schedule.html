@@ -4,47 +4,36 @@
 {% block scripts %}{% include 'js/schedule-controller.js' %}{% endblock%}
 {% block body %}
 
-<div class="fixed-top" style="background-color: #eee;">
-	<div class="row">
-		<div class="col-sm-6">
-		Schedule
-		</div>
-		<div class="col-sm-6">
+<div ng-controller="ScheduleController" id="schedule">
 
 
-	        <div class='col-sm-6'>
-	            <div class="form-group">
-	                <div class='input-group date' id='datetimepicker1'>
-	                    <input type='text' class="form-control" />
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>
-	            </div>
-	        </div>
-	        <div class='col-sm-6'>
-	            <div class="form-group">
-	                <div class='input-group date' id='datetimepicker2'>
-	                    <input type='text' class="form-control" />
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>
-	            </div>
-	        </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Schedule</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">placeholder</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+			<div class="input-group">
+			  <input type="date" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="schedule-from-date">
+			  <input type="date" class="form-control" aria-label="To" aria-describedby="basic-addon2" id="schedule-to-date">
+			  <div class="input-group-append">
+					<a href="#" class="btn btn-primary">+</a>
+			  </div>
+			</div>
+
+        </form>
+      </div>
+    </nav>
 
 
-
-		</div>
-	</div>
-</div>
-
-
-
-
-
-<div ng-controller="ScheduleController">
-	
   <ul class="list-group list-group-flush">
     <li class="list-group-item" ng-repeat="item in timesheet">
 
@@ -54,12 +43,12 @@
 				<div class="row">
 					<div class="col-sm-4 text-center">
 						<p>
-							{[ momentDate(item.date, "MMM Do YY") ]}
+							{[ renderDate(item.date, "MMM Do YY") ]}
 						</p>
 						<p>
-							{[ momentDate(item.start_time, "h:mm a") ]}
+							{[ renderDate(item.start_time, "h:mm a") ]}
 							- 
-							{[ momentDate(item.end_time, "h:mm a") ]}
+							{[ renderDate(item.end_time, "h:mm a") ]}
 						</p>
 					</div>
 					<div class="col-sm-4 text-center">
