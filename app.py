@@ -3,22 +3,19 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 import requests
 import json
+import psycopg2
 
 app = Flask(__name__)
 app.debug = True
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 db.init_app(app)
+import models
 # PostgreSQL for Server
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['postgresql://postgres@localhost/circus']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
-
-
-db = SQLAlchemy(app)
-import models
-
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
 POSTGRES = {
-    'user': 'postgres',
+    'user': 'circus',
     'pw' : 'password',
     'db' : 'circus',
     'host': 'localhost',
@@ -58,5 +55,8 @@ def getEmployee(employee_id):
 def getDashboard():
     return 'Not yet.'
 
+@app.route('/dbtest')
+def getDBStuff():
+    return 'oops'
 if __name__ == '__main__':
     app.run()
