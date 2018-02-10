@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %} Schedule {% endblock %}
+{% block scripts %}{% include 'js/schedule-controller.js' %}{% endblock%}
+{% block body %}
+
+<div class="fixed-top" style="background-color: #eee;">
+	<div class="row">
+		<div class="col-sm-6">
+		Schedule
+		</div>
+		<div class="col-sm-6">
+
+
+	        <div class='col-sm-6'>
+	            <div class="form-group">
+	                <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+	            </div>
+	        </div>
+	        <div class='col-sm-6'>
+	            <div class="form-group">
+	                <div class='input-group date' id='datetimepicker2'>
+	                    <input type='text' class="form-control" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+	            </div>
+	        </div>
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div ng-controller="ScheduleController">
+	
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" ng-repeat="item in timesheet">
+
+		<div class="row">
+			<div class="col-sm-12" style="padding: 2em;">
+			
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<p>
+							{[ momentDate(item.date, "MMM Do YY") ]}
+						</p>
+						<p>
+							{[ momentDate(item.start_time, "h:mm a") ]}
+							- 
+							{[ momentDate(item.end_time, "h:mm a") ]}
+						</p>
+					</div>
+					<div class="col-sm-4 text-center">
+
+						<p>cat id: {[ item.category_id ]}</p>
+						<p>{[ item.location ]}</p>
+						
+					</div>
+					<div class="col-sm-4 text-center">
+
+						<div class="btn-group" role="group" aria-label="Basic example">
+							<a href="#" class="btn btn-primary">-15</a>
+							<a href="#" class="btn btn-default" disabled>1 Hr</a>
+							<a href="#" class="btn btn-primary">+15</a>
+						</div>
+
+						<div>
+							<input type="checkbox">
+						</div>
+
+					</div>
+				</div>
+
+			</div>	
+		</div>
+
+    </li>
+  </ul>
+
+</div>
+
+{% endblock %}

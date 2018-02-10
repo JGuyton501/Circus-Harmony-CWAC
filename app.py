@@ -18,9 +18,9 @@ def home():
 def createShift():
 	return render_template('addShift.html')
 
-@app.route('/ng')
-def angular():
-    return render_template('ng.html')
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
     
 
 if __name__ == '__main__': 
