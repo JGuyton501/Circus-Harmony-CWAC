@@ -5,8 +5,16 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__) 
 app.debug = True
 
+
 # PostgreSQL for Server
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
+
+@app.template_global()
+def static_include(filename):
+    fullpath = os.path.join(app.static_folder, filename)
+    with open(fullpath, 'r') as f:
+        return f.read()
 
 @app.route('/')
 def home():
