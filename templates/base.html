@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="circusApp" ng-cloak>
+<head>
+	{% block head %}
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include 'links.html' %}
+
+	<title>{% block title %}{% endblock %} Circus Harmony Employee Portal</title>
+	{% endblock %}
+
+	<script>
+	{% block scripts %}{% endblock %}
+	</script>
+
+</head>
+<body>
+	{% block body %}{% endblock %}
+</body>
+</html>

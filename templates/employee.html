@@ -1,0 +1,20 @@
+
+{% block body %}
+
+<div ng-controller="EmployeeController">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option ng-repeat="employee in employees">{[employee.first_name]}{[employee.last_name]}</option>
+  </select>
+</div>
+</div>
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include("js/employee-controller.js") | safe }}
+    </script>
+{% endblock %}
+{% endblock %}

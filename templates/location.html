@@ -1,0 +1,18 @@
+{% block body %}
+<div ng-controller="LocationController">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Location</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option ng-repeat="location in locations">{[location.first_name]}</option>
+  
+  </select>
+</div>
+</div>
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include("js/location-controller.js") | safe }}
+    </script>
+{% endblock %}
+{% endblock %}

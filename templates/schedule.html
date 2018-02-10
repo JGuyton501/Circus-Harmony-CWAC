@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %} Schedule {% endblock %}
+{% block scripts %}{% include 'js/schedule-controller.js' %}{% endblock%}
+{% block body %}
+
+<div ng-controller="ScheduleController" id="schedule">
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Schedule</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+        <!--
+          <li class="nav-item">
+            <a class="nav-link" href="#">placeholder</a>
+          </li>
+        -->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+			<div class="input-group">
+			  <input type="date" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="schedule-from-date">
+			  <input type="date" class="form-control" aria-label="To" aria-describedby="basic-addon2" id="schedule-to-date">
+			  <div class="input-group-append">
+					<a href="#" class="btn btn-primary" ng-click="updateTimesheet()">+</a>
+			  </div>
+			</div>
+
+        </form>
+      </div>
+    </nav>
+
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" ng-repeat="item in timesheet">
+
+		<div class="row">
+			<div class="col-sm-12" style="padding: 2em;">
+			
+				<div class="row">
+					<div class="col-sm-4 text-center">
+						<p>
+							{[ renderDate(item.date, "MMM Do YYYY") ]}
+						</p>
+						<p>
+							{[ renderDate(item.start_time, "h:mm a") ]}
+							- 
+							{[ renderDate(item.end_time, "h:mm a") ]}
+						</p>
+					</div>
+					<div class="col-sm-4 text-center">
+
+						<p>cat id: {[ item.category_id ]}</p>
+						<p>{[ item.location ]}</p>
+						
+					</div>
+					<div class="col-sm-4 text-center">
+
+						<div class="btn-group" role="group" aria-label="Basic example">
+							<a href="#" class="btn btn-primary">-15</a>
+							<a href="#" class="btn btn-default" disabled>1 Hr</a>
+							<a href="#" class="btn btn-primary">+15</a>
+						</div>
+
+						<div>
+							<input type="checkbox">
+						</div>
+
+					</div>
+				</div>
+
+			</div>	
+		</div>
+
+    </li>
+  </ul>
+
+</div>
+
+{% endblock %}
