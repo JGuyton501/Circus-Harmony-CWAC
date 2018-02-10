@@ -8,7 +8,7 @@ class User(db.Model):
     last_name = db.Column(db.String(80))
     phone_number = db.Column(db.String(20))
     email_address = db.Column(db.String(120), unique=True)
-
+    
     def __init__(
         self,
         first_name,
@@ -23,7 +23,7 @@ class User(db.Model):
         self.email_address = email_address
 
     def __repr__(self):
-        return '<Email %r>' % self.email_address
+        return '{first_name:%s, last_name: %s, phone_number: %s, email_address: %s }'%(self.first_name, self.last_name, self.phone_number, self.email_address)
 
 # shift class
 class Shift(db.Model):
@@ -58,7 +58,7 @@ class Shift(db.Model):
         self.complete = complete
 
     def __repr__(self):
-        return '<Shift %r>' % self.shift_id
+        return '{shift_id:%s, employee_id: %s, date: %s, start_time: %s, end_time: %s, location: %s, category_id: %s, complete: %s }'%(self.shift_id, self.employee_id, self.date, self.start_time, self.end_time, self.location, self.category_id, self.complete)
 
 # job class
 class Job(db.Model):
@@ -66,7 +66,7 @@ class Job(db.Model):
     name = db.Column(db.String(250))
     category_id = db.Column(db.Integer)
     location_id = db.Column(db.Integer)
-
+    
     def __init__(
         self,
         name,
@@ -79,36 +79,38 @@ class Job(db.Model):
         self.location_id = location_id
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '{name:%s, category_id: %s, location_id: %s}'%(self.name, self.category_id, self.location_id)
+
 
 # location class
 class Location(db.Model):
-	location_id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(250))
-	address = db.Column(db.String(500))
+    location_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
+    address = db.Column(db.String(500))
 
-	def __init__(
-		self,
-		name,
-		address
-	):
-		self.name = name
-		self.address
+    def __init__(
+        self,
+        name,
+        address
+    ):
+        self.name = name
+        self.address
 
-	def __repr__(self):
-		return '<Name %r>' % self.name
+    def __repr__(self):
+        return '{name:%s, address: %s}'%(self.name, self.address)
 
 
 # category class
 class Category(db.Model):
-	category_id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(250))
+    category_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
 
-	def __init__(
-		self,
-		name
-	):
-		self.name = name
+    def __init__(
+        self,
+        name
+    ):
+        self.name = name
 
-	def __repr__(self):
-		return '<Name %r>' % self.name
+    def __repr__(self):
+        return '{name:%s}'%(self.name)
+
