@@ -18,7 +18,10 @@ def home():
 def createShift():
 	return render_template('addShift.html')
 
-
+@app.route('/ng')
+def angular():
+    return render_template('ng.html')
+    
 
 if __name__ == '__main__': 
 	app.run()
