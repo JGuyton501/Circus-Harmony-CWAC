@@ -1,5 +1,6 @@
-var app = app || angular.module('circusApp', [])
-.config(function($interpolateProvider){
+var app = app || angular.module('circusApp', []);
+
+app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
 .controller('ScheduleController', function($scope, $http) {
