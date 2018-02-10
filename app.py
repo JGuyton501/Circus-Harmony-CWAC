@@ -10,7 +10,15 @@ app.debug = True
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('base.html')
+
+
+
+@app.route('/admin/shift')
+def createShift():
+	return render_template('addShift.html')
+
+
 
 if __name__ == '__main__': 
 	app.run()
