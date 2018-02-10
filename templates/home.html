@@ -10,6 +10,9 @@
 
 </head>
 <body>
-	Dummy
+	{% for r in response %}
+	<p>{{r.first_name}}</p>
+	<hr>
+	{% endfor %}
 </body>
 </html>
