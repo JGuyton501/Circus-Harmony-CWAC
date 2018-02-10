@@ -63,7 +63,7 @@ def getEmployee(employee_id):
 
 @app.route('/dashboard')
 def getDashboard():
-    return 'Not yet.'
+    return render_template('dashboard.html')
 
 @app.route('/dbtest')
 def getDBStuff():
