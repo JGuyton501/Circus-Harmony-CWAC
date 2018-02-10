@@ -8,7 +8,7 @@ class User(db.Model):
     last_name = db.Column(db.String(80))
     phone_number = db.Column(db.String(20))
     email_address = db.Column(db.String(120), unique=True)
-    
+
     def __init__(
         self,
         first_name,
@@ -66,7 +66,7 @@ class Job(db.Model):
     name = db.Column(db.String(250))
     category_id = db.Column(db.Integer)
     location_id = db.Column(db.Integer)
-    
+
     def __init__(
         self,
         name,
@@ -112,4 +112,3 @@ class Category(db.Model):
 
 	def __repr__(self):
 		return '<Name %r>' % self.name
-

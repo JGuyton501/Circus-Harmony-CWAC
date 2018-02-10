@@ -7,25 +7,12 @@ import psycopg2
 
 app = Flask(__name__)
 app.debug = True
+app.config['DEBUG'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
 import models
-# PostgreSQL for Server
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['postgresql://postgres@localhost/circus']
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
-POSTGRES = {
-    'user': 'circus',
-    'pw' : 'password',
-    'db' : 'circus',
-    'host': 'localhost',
-    'port': '5432',
-}
-employees_url = "http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2"
-app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
 @app.route('/')
 def main():
@@ -33,23 +20,30 @@ def main():
 
 @app.route('/employees')
 def getEmployees():
-    response = requests.get(employees_url)
-    if (response.ok):
-        json_data = json.loads(response.content)
-        return json.dumps(json_data)
-    else:
-        return 'Could not decode JSON response'
+    employees = db.session.query(models.User).all()
+    response = []
+    for val in employees:
+        emp = val.__dict__
+        response.append({
+            'id': emp['employee_id'],
+            'first_name': emp['first_name'],
+            'last_name': emp['last_name'],
+            'email': emp['email_address']
+            })
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
 
 @app.route('/employees/<employee_id>')
 def getEmployee(employee_id):
-    req_id = int(employee_id)
-    response = requests.get(employees_url)
-    if (response.ok):
-        json_data = json.loads(response.content)
-        for emp in json_data:
-            if emp['id'] == req_id:
-                return json.dumps(emp)
-    return 'could not find employee'
+    employee = db.session.query(models.User).get(employee_id)
+    emp_dict = employee.__dict__
+    response = {
+        'id': employee_id,
+        'first_name': emp_dict['first_name'],
+        'last_name': emp_dict['last_name'],
+        'email': emp_dict['email_address']
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
 @app.route('/dashboard')
 def getDashboard():
