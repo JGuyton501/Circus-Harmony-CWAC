@@ -60,3 +60,56 @@ class Shift(db.Model):
     def __repr__(self):
         return '<Shift %r>' % self.shift_id
 
+# job class
+class Job(db.Model):
+    job_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
+    category_id = db.Column(db.Integer)
+    location_id = db.Column(db.Integer)
+    
+    def __init__(
+        self,
+        name,
+        category_id,
+        location_id
+    ):
+
+        self.name = name
+        self.category_id = category_id
+        self.location_id = location_id
+
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
+# location class
+class Location(db.Model):
+	location_id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(250))
+	address = db.Column(db.String(500))
+
+	def __init__(
+		self,
+		name,
+		address
+	):
+		self.name = name
+		self.address
+
+	def __repr__(self):
+		return '<Name %r>' % self.name
+
+
+# category class
+class Category(db.Model):
+	category_id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(250))
+
+	def __init__(
+		self,
+		name
+	):
+		self.name = name
+
+	def __repr__(self):
+		return '<Name %r>' % self.name
+
