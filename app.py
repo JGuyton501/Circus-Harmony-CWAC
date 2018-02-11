@@ -1,9 +1,11 @@
 import os,sys
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from tools import *
 import requests
 import json
 import psycopg2
+
 
 app = Flask(__name__)
 app.debug = True
@@ -43,6 +45,25 @@ def getEmployee(employee_id):
         'email': emp_dict['email_address']
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
+@app.route('/employees/shift/<employee_id>')
+def getEmployeeShifts(employee_id):
+	shifts = []
+	employee = db.session.query(models.Shift).filter(models.Shift.employee_id == employee_id).all()
+	for emp in employee:
+		emp_dict = emp.__dict__
+		response = {
+	    	'shift_id': emp_dict['shift_id'],
+			'employee_id': emp_dict['employee_id'],
+			'date': emp_dict['date'],
+			'start_time': emp_dict['start_time'],
+			'end_time': emp_dict['end_time'],
+			'location': emp_dict['location'],
+			'category_id': emp_dict['category_id'],
+			'complete': emp_dict['complete']
+	    }
+		shifts.append(response)	
+	return json.dumps(shifts, sort_keys=True, indent=4, separators=(',', ': '), default = date_convert)
 
 @app.route('/addEmployee', methods=['POST'])
 def addEmployee():
