@@ -1,0 +1,21 @@
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include('js/notification-controller.js') | safe }}
+    </script>
+{% endblock %}
+
+
+<div class="card">
+  <h5 class="card-header">Notifications</h5>
+  <div class="card-body">
+ 
+	
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" ng-repeat="notification in notifications">
+    	notification
+    </li>
+   </ul>
+ 	
+  </div>
+</div>
