@@ -2,9 +2,12 @@ import os,sys
 import datetime
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from dateutil import parser
 import requests
 import json
 import psycopg2
+import pytz
+
 
 app = Flask(__name__)
 app.debug = True
@@ -14,6 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
 import models
+utc=pytz.UTC
 
 @app.template_global()
 def static_include(filename):
@@ -287,6 +291,54 @@ def deleteLocation():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
+@app.route('/basecategories', methods=["GET"])
+def getBaseCategories():
+    categories = db.session.query(models.BaseCategory).all()
+    response = []
+    for val in categories:
+        cat = val.__dict__
+        response.append({
+            'base_category_id': cat['base_category_id'],
+            'name': cat['name'],
+            })
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/addBaseCategory', methods=["POST"])
+def addBaseCategory():
+    content = request.get_json()
+    location = models.BaseCategory(
+        content.get('name'),
+    )
+    db.session.add(location)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Base category added to database",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/deleteBaseCategory', methods=['POST'])
+def deleteBaseCategory():
+    content = request.get_json()
+    delete_id = content.get('base_category_id')
+    if not delete_id:
+        response = {
+            'status': 403,
+            'message': "Category did not exist",
+        }
+        return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+    category = db.session.query(models.BaseCategory).get(delete_id)
+    db.session.delete(category)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Base category deleted.",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
+
+
+
 @app.route('/categories')
 def getCategories():
     categories = db.session.query(models.Category).all()
@@ -339,6 +391,31 @@ def deleteCategory():
         'message': "Category deleted.",
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
+@app.route('/updateCategory', methods=['POST'])
+def updateCategory():
+	content = request.get_json()
+	o_name = content.get('name')
+	o_job = content.get('job')
+	o_location = content.get('location')
+	o_start_time = parser.parse(content.get('start_time'))
+	o_end_time = parser.parse(content.get('end_time'))
+	new_category_name = content.get('new_category_name')
+
+	categories = db.session.query(models.Category).all()
+	for item in categories:
+		item_dict = item.__dict__
+		print item_dict
+		if item_dict['job'] == o_job and item_dict['location'] == o_location and utc.localize(item_dict['start_time']) >= o_start_time and utc.localize(item_dict['end_time']) <= o_end_time:
+			category = db.session.query(models.Category).get(item_dict['category_id'])
+			category.name = new_category_name
+			db.session.commit()
+
+	response = {
+        'status': 200,
+        'message': "Categories updated.",
+    }
+	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
 @app.route('/dashboard')
 def getDashboard():

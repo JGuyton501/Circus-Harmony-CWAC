@@ -8,7 +8,7 @@ class User(db.Model):
     last_name = db.Column(db.String(80))
     phone_number = db.Column(db.String(20))
     email_address = db.Column(db.String(120), unique=True)
-    
+
     def __init__(
         self,
         first_name,
@@ -62,7 +62,7 @@ class Shift(db.Model):
 class Job(db.Model):
     job_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
-    
+
     def __init__(
         self,
         name,
@@ -88,7 +88,18 @@ class Location(db.Model):
     def __repr__(self):
         return '{name:%s, address: %s}'%(self.name, self.address)
 
+class BaseCategory(db.Model):
+    base_category_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
 
+    def __init__(
+        self,
+        name
+    ):
+        self.name = name
+
+    def __repr__(self):
+        return '{name:%s}'%self.name
 # category class
 class Category(db.Model):
     category_id = db.Column(db.Integer, primary_key=True)
@@ -101,7 +112,7 @@ class Category(db.Model):
 
     def __init__(
         self,
-        name, 
+        name,
         job,
         location,
         start_time,
@@ -114,5 +125,4 @@ class Category(db.Model):
         self.end_time = end_time
 
     def __repr__(self):
-        return '{name:%s}'%(self.name)
-
+        return '{name:%s, job: %s, location: %s, start_time: %s, end_time: %s}'%(self.name, self.job, self.location, self.start_time, self.end_time)
