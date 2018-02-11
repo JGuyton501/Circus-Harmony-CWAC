@@ -238,6 +238,54 @@ def deleteLocation():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
+@app.route('/basecategories', methods=["GET"])
+def getBaseCategories():
+    categories = db.session.query(models.BaseCategory).all()
+    response = []
+    for val in categories:
+        cat = val.__dict__
+        response.append({
+            'base_category_id': cat['base_category_id'],
+            'name': cat['name'],
+            })
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/addBaseCategory')
+def addBaseCategory():
+    content = request.get_json()
+    location = models.BaseCategory(
+        content.get('name'),
+    )
+    db.session.add(location)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Base category added to database",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/deleteBaseCategory', methods=['POST'])
+def deleteBaseCategory():
+    content = request.get_json()
+    delete_id = content.get('base_category_id')
+    if not delete_id:
+        response = {
+            'status': 403,
+            'message': "Category did not exist",
+        }
+        return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+    category = db.session.query(models.BaseCategory).get(delete_id)
+    db.session.delete(category)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Base category deleted.",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
+
+
+
 @app.route('/categories')
 def getCategories():
     categories = db.session.query(models.Category).all()
@@ -314,7 +362,7 @@ def updateCategory():
         'status': 200,
         'message': "Categories updated.",
     }
-	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))	
+	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
 @app.route('/dashboard')
 def getDashboard():
