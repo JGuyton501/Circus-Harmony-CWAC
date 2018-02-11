@@ -92,13 +92,26 @@ class Location(db.Model):
 # category class
 class Category(db.Model):
     category_id = db.Column(db.Integer, primary_key=True)
+    job = db.Column(db.String(250))
+    location = db.Column(db.String(250))
     name = db.Column(db.String(250))
+    start_time = db.Column(db.DateTime)
+    end_time = db.Column(db.DateTime)
+
 
     def __init__(
         self,
-        name
+        name, 
+        job,
+        location,
+        start_time,
+        end_time
     ):
         self.name = name
+        self.job = job
+        self.location = location
+        self.start_time = start_time
+        self.end_time = end_time
 
     def __repr__(self):
         return '{name:%s}'%(self.name)

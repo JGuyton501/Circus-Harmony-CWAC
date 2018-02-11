@@ -5,19 +5,16 @@ app.config(function($interpolateProvider){
 })
 .controller('AddEmployeeController', function($scope, $http) {
 
-	$scope.firstName;
-	$scope.lastName;
-	$scope.email;
-	$scope.phone;
-	$scope.addEmployeeUrl;
+	$scope.employee;
+	$scope.addEmployeeUrl='/addEmployee';
 
 
 		$scope.saveEmployee = function(){
-			console.log($scope.name);
+			console.log($scope.employee);
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addEmpoyeeUrl + '/' + $scope.firstName + '&' + $scope.lastName +'&'+$scope.email +'&'+ $scope.phone;
-
+		config.url= $scope.addEmpoyeeUrl; 
+		config.body= $scope.employee;
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',

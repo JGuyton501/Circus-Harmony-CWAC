@@ -11,15 +11,26 @@ app.config(function($interpolateProvider){
 
     $scope.renderChart = function(){
 
-        var ctx = document.getElementById('overview').getContext('2d');
-
+        var ctx = document.getElementById('overview-chart').getContext('2d');
 
         var config = {
             type: 'pie',
             data: {
                 datasets: [{
-                    data: [0, 10, 5, 2, 20, 30, 45],
-                    backgroundColor: ['red','green','blue','yellow','orange','pink'],
+                    data: [
+                        $scope.randomScalingFactor(),
+                        $scope.randomScalingFactor(),
+                        $scope.randomScalingFactor(),
+                        $scope.randomScalingFactor(),
+                        $scope.randomScalingFactor(),
+                    ],
+                    backgroundColor: [
+                        'red',
+                        'orange',
+                        'yellow',
+                        'green',
+                        'blue',
+                    ],
                     label: 'Dataset 1'
                 }],
                 labels: [
@@ -31,12 +42,20 @@ app.config(function($interpolateProvider){
                 ]
             },
             options: {
-                responsive: true
+                responsive: true,
+                legend: {
+                    display: false
+                }
             }
         };
 
-        var chart = new Chart(ctx, config);
+        $scope.overviewChart = new Chart(ctx, config);
 
+    };
+
+
+    $scope.randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
     };
 
     $scope.init();
