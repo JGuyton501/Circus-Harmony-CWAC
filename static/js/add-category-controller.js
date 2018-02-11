@@ -10,7 +10,7 @@ app.config(function($interpolateProvider){
 
 
 		$scope.saveCategory = function(){
-			console.log($scope.name);
+			console.log($scope.category);
 		var config = {};
 		config.method = 'post';
 		config.url= $scope.addCategoryUrl;
