@@ -5,15 +5,15 @@
 {% endblock %}
 
 
-<div class="card">
+<div class="card" ng-controller="NotificationController">
   <h5 class="card-header">Notifications</h5>
-  <div class="card-body">
+  <div class="card-body" style="max-height: 300px; overflow: hidden; overflow-y: visible;">
  
 	
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item" ng-repeat="notification in notifications">
-    	notification
+        {% include 'dashboard/blocks/notification.html' %}
     </li>
    </ul>
  	
