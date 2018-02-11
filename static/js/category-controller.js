@@ -32,7 +32,9 @@ app.config(function($interpolateProvider){
 	};
 
 	$scope.renderChart = function(){
-
+        if(document.getElementById('categories-chart')==null){
+            return;
+        }
 
         var categoryCtx = document.getElementById('categories-chart').getContext('2d');
         console.log(categoryCtx);

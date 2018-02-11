@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Delete Employee {% endblock %}
+
+
+{% block body %}
+<div ng-controller="DeleteEmployeeController">
+	<div class="card">
+		<h5 class="card-header">Delete Employee</h5>
+		<div class="card-body">
+			<div class=row>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Employee</label>
+						</div>
+						<select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in employees" class="custom-select" id="inputGroupSelect01" ng-model="employee" ng-change="setEmployee()">
+							
+						</select>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class=row>
+			<div class="col-sm">
+				<a href="#" class="btn btn-primary" ng-click="deleteEmployee()">Delete Employee</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% block javascript %}
+<script type="text/javascript">
+	{{ static_include("js/delete-employee-controller.js") | safe }}
+</script>
+{% endblock %}
+{% endblock %}

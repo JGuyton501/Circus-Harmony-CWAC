@@ -4,8 +4,8 @@
   <div class="input-group-prepend">
     <label class="input-group-text" for="inputGroupSelect01">Location</label>
   </div>
-  <select class="custom-select" id="inputGroupSelect01">
-    <option ng-repeat="location in locations">{[location.first_name]}</option>
+  <select class="custom-select" id="inputGroupSelect01" ng-model="location">
+    <option ng-repeat="location in locations">{[location.name]}</option>
   
   </select>
 </div>

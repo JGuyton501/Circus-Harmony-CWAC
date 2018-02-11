@@ -4,7 +4,7 @@
   <div class="input-group-prepend">
     <label class="input-group-text" for="inputGroupSelect01">Job</label>
   </div>
-  <select class="custom-select" id="inputGroupSelect01">
+  <select class="custom-select" id="inputGroupSelect01" ng-model="job">
     <option ng-repeat="job in jobs">{[job.first_name]}</option>
   </select>
 </div>

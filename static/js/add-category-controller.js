@@ -5,22 +5,23 @@ app.config(function($interpolateProvider){
 })
 .controller('AddCategoryController', function($scope, $http) {
 
-	$scope.name;
-	$scope.addCategoryUrl;
+	$scope.category;
+	$scope.addCategoryUrl='/addBaseCategory';
 
 
 		$scope.saveCategory = function(){
 			console.log($scope.name);
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addCategoryUrl + '/' + $scope.name;
+		config.url= $scope.addCategoryUrl;
+		config.data=$scope.category;
 
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',
 		};
 
-		$http(config).then(function successCallback(response) {
+	$http.post(config.url, config.data).then(function successCallback(response) {
 
 			console.log(response);
 

@@ -3,10 +3,9 @@ var app= app || angular.module('circusApp', []);
 app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
-.controller('EmployeeController', function($scope,$http){
+.controller('DeleteEmployeeController', function($scope,$http){
 
 	$scope.employees= null;
-	$scope.getEmployeesUrl='/employees';
 	$scope.deleteEmployeeUrl;
 	$scope.employee;
 
@@ -14,7 +13,7 @@ app.config(function($interpolateProvider){
 	$scope.getEmployees= function(){
 		var config={};
 		config.method= 'get';
-		config.url= $scope.getEmployeesUrl;
+		config.url= 'http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2';
 
 	config.headers = {
 			'Accept':'application/json',
@@ -38,6 +37,28 @@ app.config(function($interpolateProvider){
 	$scope.setEmployee=function(){
 		
 		console.log('employee', $scope.employee.id);
+
+	};
+
+	$scope.deleteEmployee = function(){
+			console.log('employee', $scope.employee);
+		var config = {};
+		config.method = 'post';
+		config.url= $scope.deleteEmployeeUrl + '/' + $scope.employee.id;
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
 
 	};
 

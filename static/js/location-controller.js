@@ -6,13 +6,14 @@ app.config(function($interpolateProvider){
 .controller('LocationController', function($scope, $http) {
 
 	$scope.locations = null;
+	$scope.getLocationsUrl='/locations';
 
 
 		$scope.getLocations = function(){
 
 		var config = {};
 		config.method = 'get';
-		config.url= 'http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2';
+		config.url= $scope.getLocationsUrl;
 
 		config.headers = {
 			'Accept':'application/json',
@@ -32,9 +33,6 @@ app.config(function($interpolateProvider){
 	};
 
 
-	$scope.momentDate = function(date, format){
-		return moment(date).format(format);
-	};
 
 	$scope.getLocations();
 

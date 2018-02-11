@@ -21,6 +21,7 @@ def static_include(filename):
     with open(fullpath, 'r') as f:
         return f.read()
 
+
 def dateconverter(o):
     if isinstance(o, datetime.datetime):
         return o.__str__()
@@ -61,9 +62,18 @@ def createJob():
 def createEmployee():
     return render_template('addEmployee.html')
 
+@app.route('/admin/employee/delete')
+def removeEmployee():
+    return render_template('deleteEmployee.html')
+
+@app.route('/admin/location/delete')
+def removeLocation():
+    return render_template('deleteLocation.html')
+
 @app.route('/schedule')
 def schedule():
     return render_template('schedule.html')
+
 
 @app.route('/employees')
 def getEmployees():
@@ -245,6 +255,8 @@ def getLocations():
 @app.route('/addLocation', methods=['POST'])
 def addLocation():
     content = request.get_json()
+    print(content)
+
     location = models.Location(
         content.get('name')
     )
