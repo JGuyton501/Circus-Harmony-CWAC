@@ -287,7 +287,6 @@ def deleteCategory():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-
 @app.route('/dashboard')
 def getDashboard():
     return 'Not yet.'
