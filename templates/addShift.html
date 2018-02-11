@@ -4,18 +4,59 @@
 
 
 {% block body %}
-	<div class="card">
-	  <h5 class="card-header">Create Shift</h5>
-	  <div class="card-body">
-	  	
-	  	{% include "employee.html" %}
-	  	{% include "job.html" %}
-	  	{% include "location.html" %}
-	 
-	  
-	  
-	    <a href="#" class="btn btn-primary">Save Shift</a>
-	  </div>
+<div class="card">
+	<h5 class="card-header">Create Shift</h5>
+	<div class="card-body">
+		<div class=row>
+			<div class="col-sm">
+				{% include "employee.html" %}
+			</div>
+			<div class="col-sm">
+				{% include "job.html" %}
+			</div>
+		</div>
+		<div class=row>
+			<div class="col-sm">
+				{% include "location.html" %}
+			</div>
+			<div class="col-sm">
+
+
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Date</label>
+					</div>
+					<input type="date" class="form-control" aria-label="date" aria-describedby="basic-addon2" id="shift-date">
+				</div>
+			</div>
+		</div>
+		<div class=row>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Start Time</label>
+					</div>
+					<input type="time" class="form-control" aria-label="time" aria-describedby="basic-addon2" id="shift-starttime">
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">End Time</label>
+					</div>
+					<input type="time" class="form-control" aria-label="time" aria-describedby="basic-addon2" id="shift-endtime">
+				</div>
+			</div>
+		</div>
 	</div>
+
+
+	<div class=row>
+		<div class="col-sm">
+			<a href="#" class="btn btn-primary">Save Shift</a>
+		</div>
+	</div>
+</div>
+</div>
 
 {% endblock %}
