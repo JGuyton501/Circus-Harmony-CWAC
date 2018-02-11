@@ -38,7 +38,6 @@ class Shift(db.Model):
 
     def __init__(
         self,
-        shift_id,
         employee_id,
         date,
         start_time,
@@ -48,7 +47,6 @@ class Shift(db.Model):
         complete
     ):
 
-        self.shift_id = shift_id
         self.employee_id = employee_id
         self.date = date
         self.start_time = start_time
@@ -64,19 +62,13 @@ class Shift(db.Model):
 class Job(db.Model):
     job_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
-    category_id = db.Column(db.Integer)
-    location_id = db.Column(db.Integer)
     
     def __init__(
         self,
         name,
-        category_id,
-        location_id
     ):
 
         self.name = name
-        self.category_id = category_id
-        self.location_id = location_id
 
     def __repr__(self):
         return '{name:%s, category_id: %s, location_id: %s}'%(self.name, self.category_id, self.location_id)
@@ -86,15 +78,12 @@ class Job(db.Model):
 class Location(db.Model):
     location_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
-    address = db.Column(db.String(500))
 
     def __init__(
         self,
         name,
-        address
     ):
         self.name = name
-        self.address
 
     def __repr__(self):
         return '{name:%s, address: %s}'%(self.name, self.address)
