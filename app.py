@@ -250,7 +250,7 @@ def getBaseCategories():
             })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
-@app.route('/addBaseCategory')
+@app.route('/addBaseCategory', methods=["POST"])
 def addBaseCategory():
     content = request.get_json()
     location = models.BaseCategory(
