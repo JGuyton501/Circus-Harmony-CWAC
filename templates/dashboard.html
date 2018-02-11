@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include('js/dashboard-controller.js') | safe }}
+    </script>
+{% endblock %}
+
+<div ng-controller="DashboardController" id="dashboard">
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/settings">Settings</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+			<div class="input-group">
+			  <input type="text" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="search">
+			  <div class="input-group-append">
+					<a href="#" class="btn btn-primary" ng-click="">Search</a>
+			  </div>
+			</div>
+
+        </form>
+      </div>
+    </nav>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="row">
+	<div class="col-sm-8">
+
+		<div class="row">
+			<div class="col-sm-5" >
+				{% include 'dashboard/overview.html' %}
+			</div>
+			<div class="col-sm-7" >
+				{% include 'dashboard/notifications.html' %}
+			</div>
+			<div class="col-sm-12" >
+				{% include 'dashboard/category-hours.html' %}
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-sm-4">
+		{% include 'dashboard/employees.html' %}
+	</div>
+</div>
+
+
+</div>
+
+{% endblock %}

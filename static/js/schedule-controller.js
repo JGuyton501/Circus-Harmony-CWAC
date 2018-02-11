@@ -7,7 +7,7 @@ app.config(function($interpolateProvider){
 
 	$scope.init = function(){
 
-		$scope.timesheetUrl = 'http://www.json-generator.com/api/json/get/cfnZEWzpFe?indent=2';
+		$scope.timesheetUrl = '/shifts';
 
 		$scope.timesheet = null;
 		$scope.today = moment();
@@ -35,7 +35,39 @@ app.config(function($interpolateProvider){
 
 		var config = {};
 		config.method = 'get';
-		config.url = $scope.timesheetUrl + '&from='+$scope.from+'&to='+$scope.to;
+		config.url = $scope.timesheetUrl + '?from='+$scope.from+'&to='+$scope.to;
+
+		console.log(config.url);
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+			$scope.timesheet = response.data;
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
+	};
+
+	$scope.updateTimesheet = function(){
+		$scope.getTimesheet();
+	};
+
+	$scope.updateShift = function(shift){
+
+		console.log(shift);
+
+		var config = {};
+		config.method = 'post';
+		config.url = $scope.timesheetUrl + '/' + shift.shift_id;
+		config.body = shift;
 
 		console.log(config.url);
 
@@ -57,11 +89,6 @@ app.config(function($interpolateProvider){
 	};
 
 
-	$scope.updateTimesheet = function(){
-		$scope.getTimesheet();
-	};
-
-
 	$scope.renderDate = function(date, format){
 		if (date instanceof moment){
 			return date.format(format);			
@@ -69,6 +96,19 @@ app.config(function($interpolateProvider){
 			return moment(date).format(format);			
 		}
 	};
+
+	$scope.getMomentValueOf = function(date){
+return moment(date).valueOf();
+	};
+
+	$scope.momentValueSort = function(item){
+		return moment(item.date).valueOf();
+	};
+
+
+	$scope.isBetweenDates = function(shift){
+		return shift.date > $scope.from && shift.date < $scope.to;
+	}
 
 	$scope.init();
 

@@ -3,27 +3,26 @@ var app= app || angular.module('circusApp', []);
 app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
-.controller('LocationController', function($scope, $http) {
+.controller('AddJobController', function($scope, $http) {
 
-	$scope.locations = null;
-	$scope.getLocationsUrl='/locations';
+	$scope.job;
+	$scope.addJobUrl='/addJob';
 
 
-		$scope.getLocations = function(){
-
+		$scope.saveJob = function(){
+			console.log($scope.job);
 		var config = {};
-		config.method = 'get';
-		config.url= $scope.getLocationsUrl;
+		config.method = 'post';
+		config.url= $scope.addJobUrl;
+		config.data=$scope.job;
 
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',
 		};
-
-		$http(config).then(function successCallback(response) {
+	$http.post(config.url, config.data).then(function successCallback(response) {
 
 			console.log(response);
-			$scope.locations= response.data;
 
 
 		}, function errorCallback(response) {
@@ -32,8 +31,5 @@ app.config(function($interpolateProvider){
 
 	};
 
-
-
-	$scope.getLocations();
 
 });

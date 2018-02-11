@@ -1,0 +1,53 @@
+.navbar{
+background-color:#1E4258; 
+font-family: Helvetica,Arial,sans-serif;
+}
+
+.btn-primary{
+font-family: Helvetica,Arial,sans-serif;
+background-color: #F406AB; 
+border-radius: 20%; 
+text-align: center; 
+}
+
+.btn-default{
+font-family: Helvetica,Arial,sans-serif;
+color: #5D5D5D; 
+text-align: center; 
+}
+
+.category{
+font-family: Helvetica,Arial,sans-serif;
+font-size: X-large; 
+color: #5D5D5D;
+}
+
+.location{
+font-family: Helvetica,Arial,sans-serif;
+font-size: medium; 
+color: #5D5D5D;
+}
+
+.shift-date{
+font-family: Helvetica,Arial,sans-serif;
+color: #5D5D5D;
+font-size: large; 
+}
+
+input.confirmation-check{
+ width: 30px;
+  height: 30px;
+background: #C7C7C7; 
+}
+
+
+.shift-time{
+font-family: Helvetica,Arial,sans-serif;
+font-size: medium; 
+color: #5D5D5D;
+}
+
+.list-group list-group-flush{
+text-align: center; 
+}
+

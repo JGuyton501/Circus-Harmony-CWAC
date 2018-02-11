@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} Create Category Grouping {% endblock %}
+
+
+{% block body %}
+
+<div class="card" ng-controller="AddGroupingController">
+	<h5 class="card-header">Create Category Grouping</h5>
+	<div class="card-body">
+		<div class=row>
+			<div class="col-sm">
+				{% include "job.html" %}
+			</div>
+			<div class="col-sm">
+				{% include "location.html" %}
+			</div>
+		
+			<div class="col-sm">
+				{% include "category.html" %}
+			</div>
+		</div>
+		<div class=row>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Start Date</label>
+					</div>
+					<input type="date" class="form-control" aria-label="starttime" aria-describedby="basic-addon2" id="grouping-startdate" ng-model="grouping.start_date">
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect02">End Date</label>
+					</div>
+					<input type="date" class="form-control" aria-label="endtime" aria-describedby="basic-addon2" id="grouping-enddate" ng-model="grouping.end_date">
+				</div>
+			</div>
+		</div>		
+	<div class=row>
+		<div class="col-sm">
+			<a href="#" class="btn btn-primary" ng-click="saveGrouping()">Save Category Grouping</a>
+		</div>
+	</div>
+</div>
+</div>
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include("js/add-grouping-controller.js") | safe }}
+    </script>
+{% endblock %}
+
+{% endblock %}

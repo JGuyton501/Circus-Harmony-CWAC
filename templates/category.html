@@ -1,0 +1,20 @@
+
+{% block body %}
+
+<div ng-controller="CategoryController">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Category</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" ng-model="category">
+    <option ng-repeat="cateogry in categories">{[category.first_name]}</option>
+  </select>
+</div>
+</div>
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include("js/category-controller.js") | safe }}
+    </script>
+{% endblock %}
+{% endblock %}

@@ -19,6 +19,12 @@ db.init_app(app)
 import models
 utc=pytz.UTC
 
+@app.template_global()
+def static_include(filename):
+    fullpath = os.path.join(app.static_folder, filename)
+    with open(fullpath, 'r') as f:
+        return f.read()
+
 
 def dateconverter(o):
     if isinstance(o, datetime.datetime):
@@ -27,6 +33,50 @@ def dateconverter(o):
 @app.route('/')
 def main():
     return render_template('home.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+@app.route('/admin/shift')
+def createShift():
+	return render_template('addShift.html')
+
+@app.route('/admin/grouping')
+def createCategoryGrouping():
+    return render_template('addCategoryGrouping.html')
+
+@app.route('/admin/category')
+def createCategory():
+	return render_template('addCategory.html')
+
+@app.route('/admin/location')
+def createLocation():
+    return render_template('addLocation.html')
+
+@app.route('/admin/job')
+def createJob():
+    return render_template('addJob.html')
+
+@app.route('/admin/employee')
+def createEmployee():
+    return render_template('addEmployee.html')
+
+@app.route('/admin/employee/delete')
+def removeEmployee():
+    return render_template('deleteEmployee.html')
+
+@app.route('/admin/location/delete')
+def removeLocation():
+    return render_template('deleteLocation.html')
+
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
 
 @app.route('/employees', methods=['GET'])
 def getEmployees():
@@ -53,6 +103,7 @@ def getEmployee(employee_id):
         'email': emp_dict['email_address']
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
 
 @app.route('/addEmployee', methods=['POST'])
 def addEmployee():
@@ -208,6 +259,8 @@ def getLocations():
 @app.route('/addLocation', methods=['POST'])
 def addLocation():
     content = request.get_json()
+    print(content)
+
     location = models.Location(
         content.get('name')
     )
@@ -366,7 +419,7 @@ def updateCategory():
 
 @app.route('/dashboard')
 def getDashboard():
-    return 'Not yet.'
+    return render_template('dashboard.html')
 
 @app.route('/dbtest')
 def getDBStuff():

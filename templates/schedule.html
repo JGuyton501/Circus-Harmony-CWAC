@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %} Schedule {% endblock %}
-{% block scripts %}{% include 'js/schedule-controller.js' %}{% endblock%}
+
 {% block body %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include('js/schedule-controller.js') | safe }}
+    </script>
+{% endblock %}
 
 <div ng-controller="ScheduleController" id="schedule">
 
@@ -35,19 +41,23 @@
       </div>
     </nav>
 
+<br>
+<br>
+<br>
+<br>
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" ng-repeat="item in timesheet">
+    <li class="list-group-item" ng-repeat="item in timesheet | orderBy: -momentValueSort " ng-if="isBetweenDates(item)">
 
 		<div class="row">
 			<div class="col-sm-12" style="padding: 2em;">
 			
 				<div class="row">
 					<div class="col-sm-4 text-center">
-						<p>
-							{[ renderDate(item.date, "MMM Do YYYY") ]}
+						<p class="shift-date">
+							{[ renderDate(item.date, "MMM Do, YYYY") ]}
 						</p>
-						<p>
+						<p class="shift-time">
 							{[ renderDate(item.start_time, "h:mm a") ]}
 							- 
 							{[ renderDate(item.end_time, "h:mm a") ]}
@@ -55,8 +65,8 @@
 					</div>
 					<div class="col-sm-4 text-center">
 
-						<p>cat id: {[ item.category_id ]}</p>
-						<p>{[ item.location ]}</p>
+						<p class="category">cat id: {[ item.category_id ]}</p>
+						<p class="location">{[ item.location ]}</p>
 						
 					</div>
 					<div class="col-sm-4 text-center">
@@ -68,7 +78,7 @@
 						</div>
 
 						<div>
-							<input type="checkbox">
+							<input type="checkbox" ng-model="item.complete" ng-change="updateShift(item)" class="confirmation-check" >
 						</div>
 
 					</div>
