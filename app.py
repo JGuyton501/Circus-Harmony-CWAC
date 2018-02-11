@@ -74,8 +74,7 @@ def removeLocation():
 def schedule():
     return render_template('schedule.html')
 
-
-@app.route('/employees')
+@app.route('/employees', methods=['GET'])
 def getEmployees():
     employees = db.session.query(models.User).all()
     response = []
@@ -100,6 +99,7 @@ def getEmployee(employee_id):
         'email': emp_dict['email_address']
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
 
 @app.route('/addEmployee', methods=['POST'])
 def addEmployee():
