@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/settings">dashboard</a>
+            <a class="nav-link" href="/dashboard">dashboard</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -47,7 +47,7 @@
 
 <div id="accordion">
   <div class="card">
-    <div class="card-header" id="headingOne">
+    <div class="card-header" id="add-shift">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Shift
@@ -64,7 +64,7 @@
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingTwo">
+    <div class="card-header" id="add-employee">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Employee
@@ -81,7 +81,7 @@
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="add-job">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Job
@@ -92,6 +92,22 @@
       <div class="card-body">
 
 		{% include 'addJob.html' %}
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="add-location">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          Location
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+
+		{% include 'addLocation.html' %}
 
       </div>
     </div>
