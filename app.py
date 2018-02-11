@@ -24,7 +24,7 @@ def dateconverter(o):
 def main():
     return render_template('home.html')
 
-@app.route('/employees')
+@app.route('/employees', methods=['GET']))
 def getEmployees():
     employees = db.session.query(models.User).all()
     response = []
@@ -84,20 +84,6 @@ def deleteEmployee():
         'status': 200,
         'message': "Employee deleted.",
     }
-    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
-
-@app.route('/categories', methods=['GET'])
-def getCategories():
-    categories = db.session.query(models.Category).all()
-    response = []
-    for val in categories:
-        cat = val.__dict__
-        response.append({
-            'id': cat['category_id'],
-            'location': cat['location'],
-            'job': cat['job'],
-            'name': cat['name']
-            })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
 
@@ -248,7 +234,59 @@ def deleteLocation():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-@app.route('/addCategory')
+@app.route('/categories')
+def getCategories():
+    categories = db.session.query(models.Category).all()
+    response = []
+    for val in categories:
+        cat = val.__dict__
+        response.append({
+            'category_id': cat['category_id'],
+            'job': cat['job'],
+            'location': cat['location'],
+            'name': cat['name'],
+            'start_time': cat['start_time'],
+            'end_time': cat['end_time'],
+            })
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/addCategory', methods=['POST'])
+def addCategory():
+    content = request.get_json()
+    location = models.Category(
+        content.get('name'),
+        content.get('job'),
+        content.get('location'),
+        content.get('start_time'),
+        content.get('end_time')
+    )
+    db.session.add(location)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Category added to database",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/deleteCategory', methods=['POST'])
+def deleteCategory():
+    content = request.get_json()
+    delete_id = content.get('category_id')
+    if not delete_id:
+        response = {
+            'status': 403,
+            'message': "Category did not exist",
+        }
+        return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+    category = db.session.query(models.Category).get(delete_id)
+    db.session.delete(category)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Category deleted.",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
 
 @app.route('/dashboard')
 def getDashboard():
