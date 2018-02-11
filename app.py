@@ -9,12 +9,17 @@ import psycopg2
 app = Flask(__name__)
 app.debug = True
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mel:password@localhost/circus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
 import models
 
+@app.template_global()
+def static_include(filename):
+    fullpath = os.path.join(app.static_folder, filename)
+    with open(fullpath, 'r') as f:
+        return f.read()
 
 def dateconverter(o):
     if isinstance(o, datetime.datetime):
@@ -23,6 +28,14 @@ def dateconverter(o):
 @app.route('/')
 def main():
     return render_template('home.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
 
 @app.route('/admin/shift')
 def createShift():
