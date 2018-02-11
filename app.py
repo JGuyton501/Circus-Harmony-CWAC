@@ -34,6 +34,7 @@ def dateconverter(o):
 def main():
     return render_template('home.html')
 
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -78,7 +79,13 @@ def removeLocation():
 def schedule():
     return render_template('schedule.html')
 
+<<<<<<< HEAD
+
 @app.route('/employees', methods=['GET'])
+
+=======
+@app.route('/employees', methods=['GET'])
+>>>>>>> master
 def getEmployees():
     employees = db.session.query(models.User).all()
     response = []
@@ -303,7 +310,11 @@ def getBaseCategories():
             })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
+<<<<<<< HEAD
+@app.route('/addBaseCategory', methods=['POST'])
+=======
 @app.route('/addBaseCategory', methods=["POST"])
+>>>>>>> master
 def addBaseCategory():
     content = request.get_json()
     location = models.BaseCategory(

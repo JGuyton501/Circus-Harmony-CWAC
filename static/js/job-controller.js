@@ -12,7 +12,7 @@ app.config(function($interpolateProvider){
 
 		var config = {};
 		config.method = 'get';
-		config.url= 'http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2';
+		config.url= '/jobs';
 
 		config.headers = {
 			'Accept':'application/json',
