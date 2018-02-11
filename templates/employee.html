@@ -6,8 +6,8 @@
   <div class="input-group-prepend">
     <label class="input-group-text" for="inputGroupSelect01">Employee</label>
   </div>
-  <select class="custom-select" id="inputGroupSelect01">
-    <option ng-repeat="employee in employees">{[employee.first_name]}{[employee.last_name]}</option>
+  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in employees" class="custom-select" id="inputGroupSelect01" ng-model="employee" ng-change="setEmployee()">
+  
   </select>
 </div>
 </div>

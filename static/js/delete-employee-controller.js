@@ -3,10 +3,9 @@ var app= app || angular.module('circusApp', []);
 app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
-.controller('EmployeeController', function($scope,$http){
+.controller('DeleteEmployeeController', function($scope,$http){
 
 	$scope.employees= null;
-	$scope.getEmployeesUrl;
 	$scope.deleteEmployeeUrl;
 	$scope.employee;
 
@@ -38,6 +37,28 @@ app.config(function($interpolateProvider){
 	$scope.setEmployee=function(){
 		
 		console.log('employee', $scope.employee.id);
+
+	};
+
+	$scope.deleteEmployee = function(){
+			console.log('employee', $scope.employee);
+		var config = {};
+		config.method = 'post';
+		config.url= $scope.deleteEmployeeUrl + '/' + $scope.employee.id;
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
 
 	};
 

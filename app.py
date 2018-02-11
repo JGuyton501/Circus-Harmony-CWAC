@@ -50,6 +50,13 @@ def createJob():
 def createEmployee():
     return render_template('addEmployee.html')
 
+@app.route('/admin/employee/delete')
+def deleteEmployee():
+    return render_template('deleteEmployee.html')
+@app.route('/admin/location/delete')
+def deleteLocation():
+    return render_template('deleteLocation.html')
+
 @app.route('/schedule')
 def schedule():
     return render_template('schedule.html')

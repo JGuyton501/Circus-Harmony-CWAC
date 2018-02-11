@@ -6,6 +6,8 @@ app.config(function($interpolateProvider){
 .controller('LocationController', function($scope, $http) {
 
 	$scope.locations = null;
+	$scope.deleteLocationUrl;
+	$scope.location;
 
 
 		$scope.getLocations = function(){
@@ -31,7 +33,34 @@ app.config(function($interpolateProvider){
 
 	};
 
+	$scope.setLocation=function(){
+		
+		console.log('location', $scope.location.id);
 
+	};
+
+
+		$scope.deleteEmployee = function(){
+			console.log('location', $scope.location);
+		var config = {};
+		config.method = 'post';
+		config.url= $scope.deleteLocationUrl + '/' + $scope.location.id;
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
+	};
 
 	$scope.getLocations();
 
