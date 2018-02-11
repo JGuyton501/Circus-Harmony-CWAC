@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.debug = True
 
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mel:password@localhost/circus'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
@@ -29,6 +29,10 @@ def main():
 @app.route('/admin/shift')
 def createShift():
 	return render_template('addShift.html')
+
+@app.route('/admin/grouping')
+def createCategoryGrouping():
+	return render_template('addCategoryGrouping.html')
 
 @app.route('/schedule')
 def schedule():
