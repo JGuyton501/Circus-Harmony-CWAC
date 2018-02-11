@@ -17,6 +17,9 @@ app.config(function($interpolateProvider){
 		$scope.setDefaultDates();
 		$scope.getTimesheet();
 
+		$scope.getCategories();
+		$scope.getLocations();
+
 	}
 
 	$scope.setDefaultDates = function(){
@@ -109,6 +112,107 @@ return moment(date).valueOf();
 	$scope.isBetweenDates = function(shift){
 		return shift.date > $scope.from && shift.date < $scope.to;
 	}
+
+
+
+
+	$scope.categories = null;
+
+
+	$scope.getCategories = function(){
+
+		var config = {};
+		config.method = 'get';
+		config.url= '/basecategories';
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+			$scope.categories = response.data;
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
+	};
+
+
+
+
+
+
+	$scope.findCategoryById = function(id){
+
+		if ($scope.categories == null){
+			return false;
+		}
+
+		for (var i = $scope.categories.length - 1; i >= 0; i--) {
+
+			if ($scope.categories[i].id = id){
+				return $scope.categories[i];
+			}
+
+		}
+
+	};
+
+
+
+
+
+
+	$scope.locations = null;
+
+
+	$scope.getLocations = function(){
+
+		var config = {};
+		config.method = 'get';
+		config.url= '/locations';
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log("got locations");
+			console.log(response);
+			$scope.locations= response.data;
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
+	};
+
+
+	$scope.findLocationById = function(id){
+
+		if ($scope.locations == null){
+			return false;
+		}
+
+		for (var i = $scope.locations.length - 1; i >= 0; i--) {
+
+			if ($scope.locations[i].id = id){
+				return $scope.locations[i];
+			}
+
+		}
+
+	};
+
+
 
 	$scope.init();
 

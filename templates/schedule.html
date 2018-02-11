@@ -65,8 +65,8 @@
 					</div>
 					<div class="col-sm-4 text-center">
 
-						<p class="category">cat id: {[ item.category_id ]}</p>
-						<p class="location">{[ item.location ]}</p>
+						<p class="category" ng-if="findCategoryById(item.category_id)!==false">{[ findCategoryById(item.category_id).name ]}</p>
+						<p class="location" ng-if="findLocationById(item.location)!==false">{[ findLocationById(item.location).name  ]}</p>
 						
 					</div>
 					<div class="col-sm-4 text-center">
