@@ -10,17 +10,18 @@ app.config(function($interpolateProvider){
 
 
 		$scope.saveEmployee = function(){
-			console.log($scope.employee);
+			console.log('employee',$scope.employee);
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addEmpoyeeUrl; 
-		config.body= $scope.employee;
+		config.url= $scope.addEmployeeUrl; 
+		config.data= $scope.employee;
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',
 		};
-
-		$http(config).then(function successCallback(response) {
+		console.log('configurl', config.url);
+		console.log('configdata', config.data);
+		$http.post(config.url, config.data).then(function successCallback(response) {
 
 			console.log(response);
 

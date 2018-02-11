@@ -5,25 +5,25 @@ app.config(function($interpolateProvider){
 })
 .controller('AddLocationController', function($scope, $http) {
 
-	$scope.name;
-	$scope.address;
-	$scope.addLocationUrl;
+	$scope.location;
+	$scope.addLocationUrl='/addLocation';
 
 
 		$scope.saveLocation = function(){
-			console.log($scope.name);
-			console.log($scope.address);
+			console.log($scope.location);
+			
 
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addLocationUrl + '/' + $scope.name+'&'+$scope.address;
-
+		config.url= $scope.addLocationUrl;
+		config.data=$scope.location;
+		console.log('configbody', config.data);
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',
 		};
-
-		$http(config).then(function successCallback(response) {
+		console.log('config', config);
+		$http.post(config.url, config.data).then(function successCallback(response) {
 
 			console.log(response);
 

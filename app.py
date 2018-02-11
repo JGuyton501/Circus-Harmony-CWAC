@@ -9,11 +9,17 @@ import psycopg2
 app = Flask(__name__)
 app.debug = True
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mel:password@localhost/circus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/circus'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
 import models
+
+@app.template_global()
+def static_include(filename):
+    fullpath = os.path.join(app.static_folder, filename)
+    with open(fullpath, 'r') as f:
+        return f.read()
 
 
 def dateconverter(o):
@@ -49,10 +55,11 @@ def createEmployee():
     return render_template('addEmployee.html')
 
 @app.route('/admin/employee/delete')
-def deleteEmployee():
+def removeEmployee():
     return render_template('deleteEmployee.html')
+
 @app.route('/admin/location/delete')
-def deleteLocation():
+def removeLocation():
     return render_template('deleteLocation.html')
 
 @app.route('/schedule')
@@ -240,6 +247,8 @@ def getLocations():
 @app.route('/addLocation', methods=['POST'])
 def addLocation():
     content = request.get_json()
+    print(content)
+
     location = models.Location(
         content.get('name')
     )

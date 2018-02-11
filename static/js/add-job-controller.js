@@ -5,22 +5,22 @@ app.config(function($interpolateProvider){
 })
 .controller('AddJobController', function($scope, $http) {
 
-	$scope.name;
-	$scope.addJobUrl;
+	$scope.job;
+	$scope.addJobUrl='/addJob';
 
 
 		$scope.saveJob = function(){
-			console.log($scope.name);
+			console.log($scope.job);
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addJobUrl + '/' + $scope.name;
+		config.url= $scope.addJobUrl;
+		config.data=$scope.job;
 
 		config.headers = {
 			'Accept':'application/json',
 			'Content-Type':'application/json',
 		};
-
-		$http(config).then(function successCallback(response) {
+	$http.post(config.url, config.data).then(function successCallback(response) {
 
 			console.log(response);
 

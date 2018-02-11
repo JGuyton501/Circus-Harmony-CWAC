@@ -6,7 +6,7 @@ app.config(function($interpolateProvider){
 .controller('EmployeeController', function($scope,$http){
 
 	$scope.employees= null;
-	$scope.getEmployeesUrl;
+	$scope.getEmployeesUrl='/employees';
 	$scope.deleteEmployeeUrl;
 	$scope.employee;
 
@@ -14,7 +14,7 @@ app.config(function($interpolateProvider){
 	$scope.getEmployees= function(){
 		var config={};
 		config.method= 'get';
-		config.url= 'http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2';
+		config.url= $scope.getEmployeesUrl;
 
 	config.headers = {
 			'Accept':'application/json',
