@@ -12,7 +12,7 @@ import pytz
 app = Flask(__name__)
 app.debug = True
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/circus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
@@ -34,6 +34,14 @@ def dateconverter(o):
 def main():
     return render_template('home.html')
 
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
 
 @app.route('/admin/shift')
 def createShift():
@@ -71,9 +79,13 @@ def removeLocation():
 def schedule():
     return render_template('schedule.html')
 
+<<<<<<< HEAD
 
 @app.route('/employees', methods=['GET'])
 
+=======
+@app.route('/employees', methods=['GET'])
+>>>>>>> master
 def getEmployees():
     employees = db.session.query(models.User).all()
     response = []
@@ -98,6 +110,7 @@ def getEmployee(employee_id):
         'email': emp_dict['email_address']
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
 
 @app.route('/addEmployee', methods=['POST'])
 def addEmployee():
@@ -297,7 +310,11 @@ def getBaseCategories():
             })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
+<<<<<<< HEAD
 @app.route('/addBaseCategory', methods=['POST'])
+=======
+@app.route('/addBaseCategory', methods=["POST"])
+>>>>>>> master
 def addBaseCategory():
     content = request.get_json()
     location = models.BaseCategory(

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %} Settings {% endblock %}
+
+{% block body %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include('js/settings-controller.js') | safe }}
+    </script>
+{% endblock %}
+
+<div ng-controller="SettingsController" id="settings">
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">Settings</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">dashboard</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+        </form>
+      </div>
+    </nav>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="add-shift">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Shift
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+
+		{% include 'addShift.html' %}
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="add-employee">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Employee
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+
+
+		{% include 'addEmployee.html' %}
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="add-job">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Job
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+
+		{% include 'addJob.html' %}
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="add-location">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          Location
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+
+		{% include 'addLocation.html' %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+   <link rel="stylesheet" type="text/css" href="./login.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+
+    <meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
+  </head>
+
+  <body>
+
+  <div id="image_gradient"></div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-2, col-md-2">
+
+
+    <div class="logo text-center">
+      <img src= "{{ url_for('static', filename='images/logo.png') }}"  height=100 width=100>
+
+          </div>
+        </div>
+<div class="col-sm-10">
+    <form class="form-signin">
+
+      <label for="First Name" class="sr-only"></label>
+      <input type="text" id="user_first_name" class="form-control" placeholder="First Name" style="margin-bottom: 1em;" required autofocus>
+      <label for="Last Name" class="sr-only"></label>
+      <input type="text" id="user_last_name" class="form-control" placeholder="Last Name" style="margin-bottom: 1em;" required autofocus>
+    <!--  <label for="inputPassword" class="sr-only"></label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" style="margin-bottom: 1em;" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me </label>-->
+
+
+     <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #F406AB">Login</button>
+      </form>
+</div>
+<div class="contact">
+    <p>
+      If you have difficulty logging in, call the office at (314)436-7676.
+      </p>
+    </div>
+<div class="col-sm-1">
+</div>
+  </div>
+</div>
+
+
+  </body>
+
+</html>

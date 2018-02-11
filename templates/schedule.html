@@ -41,19 +41,23 @@
       </div>
     </nav>
 
+<br>
+<br>
+<br>
+<br>
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" ng-repeat="item in timesheet">
+    <li class="list-group-item" ng-repeat="item in timesheet | orderBy: -momentValueSort " ng-if="isBetweenDates(item)">
 
 		<div class="row">
 			<div class="col-sm-12" style="padding: 2em;">
 			
 				<div class="row">
 					<div class="col-sm-4 text-center">
-						<p>
+						<p class="shift-date">
 							{[ renderDate(item.date, "MMM Do, YYYY") ]}
 						</p>
-						<p>
+						<p class="shift-time">
 							{[ renderDate(item.start_time, "h:mm a") ]}
 							- 
 							{[ renderDate(item.end_time, "h:mm a") ]}
@@ -74,7 +78,7 @@
 						</div>
 
 						<div>
-							<input type="checkbox" ng-model="item.complete" ng-change="updateShift(item)">
+							<input type="checkbox" ng-model="item.complete" ng-change="updateShift(item)" class="confirmation-check" >
 						</div>
 
 					</div>

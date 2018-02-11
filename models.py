@@ -125,4 +125,4 @@ class Category(db.Model):
         self.end_time = end_time
 
     def __repr__(self):
-        return '{name:%s}'%(self.name)
+        return '{name:%s, job: %s, location: %s, start_time: %s, end_time: %s}'%(self.name, self.job, self.location, self.start_time, self.end_time)
