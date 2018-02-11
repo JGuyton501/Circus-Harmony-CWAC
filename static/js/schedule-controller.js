@@ -19,6 +19,7 @@ app.config(function($interpolateProvider){
 
 		$scope.getCategories();
 		$scope.getLocations();
+		$scope.getEmployees();
 
 	}
 
@@ -212,6 +213,56 @@ return moment(date).valueOf();
 
 	};
 
+
+
+
+
+
+
+
+	$scope.employees = null;
+
+
+	$scope.getEmployees = function(){
+
+		var config = {};
+		config.method = 'get';
+		config.url= '/employees';
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log("got employees");
+			console.log(response);
+			$scope.employees = response.data;
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
+	};
+
+
+	$scope.findEmployeeById = function(id){
+
+		if ($scope.employees == null){
+			return false;
+		}
+
+		for (var i = $scope.employees.length - 1; i >= 0; i--) {
+
+			if ($scope.employees[i].id = id){
+				return $scope.employees[i];
+			}
+
+		}
+
+	};
 
 
 	$scope.init();
