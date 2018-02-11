@@ -56,9 +56,36 @@ app.config(function($interpolateProvider){
 
 	};
 
-
 	$scope.updateTimesheet = function(){
 		$scope.getTimesheet();
+	};
+
+	$scope.updateShift = function(shift){
+
+		console.log(shift);
+
+		var config = {};
+		config.method = 'post';
+		config.url = $scope.timesheetUrl + '/' + shift.shift_id;
+		config.body = shift;
+
+		console.log(config.url);
+
+		config.headers = {
+			'Accept':'application/json',
+			'Content-Type':'application/json',
+		};
+
+		$http(config).then(function successCallback(response) {
+
+			console.log(response);
+			$scope.timesheet = response.data;
+
+
+		}, function errorCallback(response) {
+			console.log(response);
+		}); 
+
 	};
 
 

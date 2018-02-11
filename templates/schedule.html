@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %} Schedule {% endblock %}
-{% block scripts %}{% include 'js/schedule-controller.js' %}{% endblock%}
+
 {% block body %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        {{ static_include('js/schedule-controller.js') | safe }}
+    </script>
+{% endblock %}
 
 <div ng-controller="ScheduleController" id="schedule">
 
@@ -45,7 +51,7 @@
 				<div class="row">
 					<div class="col-sm-4 text-center">
 						<p>
-							{[ renderDate(item.date, "MMM Do YYYY") ]}
+							{[ renderDate(item.date, "MMM Do, YYYY") ]}
 						</p>
 						<p>
 							{[ renderDate(item.start_time, "h:mm a") ]}
@@ -68,7 +74,7 @@
 						</div>
 
 						<div>
-							<input type="checkbox">
+							<input type="checkbox" ng-model="item.complete" ng-change="updateShift(item)">
 						</div>
 
 					</div>
