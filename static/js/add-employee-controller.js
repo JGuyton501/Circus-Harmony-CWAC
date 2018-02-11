@@ -3,17 +3,20 @@ var app= app || angular.module('circusApp', []);
 app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
-.controller('AddCategoryController', function($scope, $http) {
+.controller('AddEmployeeController', function($scope, $http) {
 
-	$scope.name;
-	$scope.addCategoryUrl;
+	$scope.firstName;
+	$scope.lastName;
+	$scope.email;
+	$scope.phone;
+	$scope.addEmployeeUrl;
 
 
-		$scope.saveCategory = function(){
+		$scope.saveEmployee = function(){
 			console.log($scope.name);
 		var config = {};
 		config.method = 'post';
-		config.url= $scope.addCategoryUrl + '/' + $scope.name;
+		config.url= $scope.addEmpoyeeUrl + '/' + $scope.firstName + '&' + $scope.lastName +'&'+$scope.email +'&'+ $scope.phone;
 
 		config.headers = {
 			'Accept':'application/json',

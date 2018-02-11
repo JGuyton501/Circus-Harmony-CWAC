@@ -32,7 +32,23 @@ def createShift():
 
 @app.route('/admin/grouping')
 def createCategoryGrouping():
-	return render_template('addCategoryGrouping.html')
+    return render_template('addCategoryGrouping.html')
+
+@app.route('/admin/category')
+def createCategory():
+	return render_template('addCategory.html')
+
+@app.route('/admin/location')
+def createLocation():
+    return render_template('addLocation.html')
+
+@app.route('/admin/job')
+def createJob():
+    return render_template('addJob.html')
+
+@app.route('/admin/employee')
+def createEmployee():
+    return render_template('addEmployee.html')
 
 @app.route('/schedule')
 def schedule():
