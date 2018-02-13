@@ -13,7 +13,7 @@
 <div ng-controller="SettingsController" id="settings">
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="/dashboard">Dashboard</a>
+      <a class="navbar-brand" href="{{ url_for('dashboard') }}">Dashboard</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/settings">settings</a>
+            <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -53,7 +53,7 @@
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
 
-		{% include 'addShift.html' %}
+		{% include 'admin/addShift.html' %}
 
       </div>
     </div>
@@ -70,7 +70,7 @@
       <div class="card-body">
 
 
-		{% include 'addEmployee.html' %}
+		{% include 'admin/addEmployee.html' %}
 
       </div>
     </div>
@@ -86,7 +86,7 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-		{% include 'addJob.html' %}
+		{% include 'admin/addJob.html' %}
 
       </div>
     </div>
@@ -102,7 +102,7 @@
     <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-    {% include 'addLocation.html' %}
+    {% include 'admin/addLocation.html' %}
 
       </div>
     </div>
@@ -119,7 +119,7 @@
     <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-    {% include 'addCategory.html' %}
+    {% include 'admin/addCategory.html' %}
 
       </div>
     </div>

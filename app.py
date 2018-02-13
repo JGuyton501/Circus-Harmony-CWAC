@@ -25,23 +25,35 @@ def static_include(filename):
     with open(fullpath, 'r') as f:
         return f.read()
 
-
 def dateconverter(o):
     if isinstance(o, datetime.datetime):
         return o.__str__()
+
+
+# Main routes
 
 @app.route('/')
 def main():
     return render_template('home.html')
 
-
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/settings')
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
+
+
+# Admin routes
+
+@app.route('/admin/settings')
 def settings():
-    return render_template('settings.html')
+    return render_template('admin/settings.html')
 
 @app.route('/admin/shift')
 def createShift():
@@ -75,9 +87,9 @@ def removeEmployee():
 def removeLocation():
     return render_template('deleteLocation.html')
 
-@app.route('/schedule')
-def schedule():
-    return render_template('schedule.html')
+
+
+# Rest routes
 
 @app.route('/employees', methods=['GET'])
 def getEmployees():
@@ -337,9 +349,6 @@ def deleteBaseCategory():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-
-
-
 @app.route('/categories')
 def getCategories():
     categories = db.session.query(models.Category).all()
@@ -417,10 +426,6 @@ def updateCategory():
         'message': "Categories updated.",
     }
 	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
-
-@app.route('/dashboard')
-def getDashboard():
-    return render_template('dashboard.html')
 
 @app.route('/dbtest')
 def getDBStuff():
