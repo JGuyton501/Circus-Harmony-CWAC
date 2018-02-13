@@ -1,37 +1,22 @@
-var app= app || angular.module('circusApp', []);
+var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('LocationController', function($scope, $http) {
-
-	$scope.locations = null;
-	$scope.deleteLocationUrl;
-	$scope.location;
+app.controller('LocationController', function($scope, DataService) {
 
 
-		$scope.getLocations = function(){
+/* we dont need a controller for every template. will delete this */
 
-		var config = {};
-		config.method = 'get';
-		config.url= 'http://www.json-generator.com/api/json/get/cfKzddmdlu?indent=2';
+	$scope.init = function(){
+		$scope.data = DataService;
+	}
 
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log(response);
-			$scope.locations= response.data;
+	$scope.init();
 
 
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
 
-	};
+
+
+
+ /* will move these into dataservice */
 
 	$scope.setLocation=function(){
 		
@@ -61,7 +46,5 @@ app.config(function($interpolateProvider){
 		}); 
 
 	};
-
-	$scope.getLocations();
 
 });

@@ -5,6 +5,10 @@ app.config(function($interpolateProvider){
 })
 .controller('AddShiftController', function($scope, $http) {
 
+/* will move this to dataservice   */
+
+/* need to figure out something better than getScope */
+
 	$scope.shift;
 	$scope.addShiftUrl='/addShift';
 	

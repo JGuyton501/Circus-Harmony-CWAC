@@ -1,35 +1,13 @@
-var app= app || angular.module('circusApp', []);
+var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('CategoryController', function($scope, $http) {
+app.controller('CategoryController', function($scope,DataService) {
 
-	$scope.categories = null;
+    $scope.init = function(){
 
+        $scope.Data = DataService;
+        $scope.renderChart();
 
-	$scope.getCategories = function(){
-
-		var config = {};
-		config.method = 'get';
-		config.url= '/basecategories';
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log(response);
-			$scope.categories= response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
-	};
+    }
 
 	$scope.renderChart = function(){
         if(document.getElementById('categories-chart')==null){
@@ -37,8 +15,6 @@ app.config(function($interpolateProvider){
         }
 
         var categoryCtx = document.getElementById('categories-chart').getContext('2d');
-        console.log(categoryCtx);
-
 
 var barChartData = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -108,16 +84,12 @@ var barChartData = {
 
         $scope.categoriesChart = new Chart(categoryCtx, config);
 
-        console.log($scope.categoriesChart);
-
 	};
 
     $scope.randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
 
-	$scope.getCategories();
-
-	$scope.renderChart();
+    $scope.init();
 
 });

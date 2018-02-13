@@ -1,9 +1,9 @@
-var app= app || angular.module('circusApp', []);
+var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('DeleteEmployeeController', function($scope,$http){
+app.controller('DeleteEmployeeController', function($scope,$http){
+
+/* will move this to dataservice and delete this controller */
+
 
 	$scope.employees= null;
 	$scope.deleteEmployeeUrl;

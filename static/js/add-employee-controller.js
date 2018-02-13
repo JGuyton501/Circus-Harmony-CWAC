@@ -5,6 +5,8 @@ app.config(function($interpolateProvider){
 })
 .controller('AddEmployeeController', function($scope, $http) {
 
+/* will move this to dataservice and delete this controller */
+
 	$scope.employee;
 	$scope.addEmployeeUrl='/addEmployee';
 

@@ -1,11 +1,10 @@
 var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('NotificationController', function($scope, $http) {
+app.controller('NotificationController', function($scope, DataService) {
 
 	$scope.init = function(){
+		$scope.data = DataService;
+
 		$scope.notifications = [];
 		$scope.notifications.push(
 {"message":"Cras fringilla nunc eget urna sodales, sit amet fermentum arcu varius. Sed libero libero, blandit quis libero eget, vulputate vulputate mi.",

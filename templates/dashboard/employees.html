@@ -1,21 +1,16 @@
 {% block javascript %}
-    <script type="text/javascript">
-      {{ static_include('js/employee-controller.js') | safe }}
-    </script>
+  <script src="{{ url_for('static', filename='js/employee-controller.js') }}"></script>
 {% endblock %}
-
 
 <div class="card" ng-controller="EmployeeController">
   <h5 class="card-header">Employees</h5>
   <div class="card-body" style="max-height: 600px; overflow: hidden; overflow-y: visible;padding: 0!important;">
- 
-	
 
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item" ng-repeat="employee in employees">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" ng-repeat="employee in data.employees">
         {% include 'dashboard/blocks/employee-snapshot.html' %}
-    </li>
-   </ul>
- 	
+      </li>
+    </ul>
+
   </div>
 </div>

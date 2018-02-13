@@ -1,41 +1,18 @@
-var app= app || angular.module('circusApp', []);
+var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('JobController', function($scope, $http) {
+app.controller('JobController', function($scope, DataService) {
 
-	$scope.jobs = null;
+/* will move momentdate to helper class and delete this controller */
 
 
-		$scope.getJobs = function(){
-
-		var config = {};
-		config.method = 'get';
-		config.url= '/jobs';
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log(response);
-			$scope.jobs= response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
-	};
-
+	$scope.init = function(){
+		$scope.data = DataService;
+	}
 
 	$scope.momentDate = function(date, format){
 		return moment(date).format(format);
 	};
 
-	$scope.getJobs();
+	$scope.init();
 
 });

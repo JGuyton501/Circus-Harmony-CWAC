@@ -5,6 +5,10 @@ app.config(function($interpolateProvider){
 })
 .controller('AddGroupingController', function($scope, $http) {
 
+
+/* will move this to dataservice and delete this controller */
+
+
 	$scope.grouping;
 	$scope.addGroupingUrl='/addCategory';
 	

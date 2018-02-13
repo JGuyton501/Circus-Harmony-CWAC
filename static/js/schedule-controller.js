@@ -1,11 +1,10 @@
 var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('ScheduleController', function($scope, $http) {
+app.controller('ScheduleController', function($scope, DataService) {
 
 	$scope.init = function(){
+
+		$scope.data = DataService;
 
 		$scope.timesheetUrl = '/shifts';
 
@@ -17,10 +16,6 @@ app.config(function($interpolateProvider){
 		$scope.setDefaultDates();
 		$scope.getTimesheet();
 
-		$scope.getCategories();
-		$scope.getLocations();
-		$scope.getEmployees();
-
 	}
 
 	$scope.setDefaultDates = function(){
@@ -31,33 +26,6 @@ app.config(function($interpolateProvider){
 	$scope.getTimeframe = function(){
 		$scope.from = $('#schedule-from-date').val();
 		$scope.to = $('#schedule-to-date').val();
-	};
-
-	$scope.getTimesheet = function(){
-
-		$scope.getTimeframe();
-
-		var config = {};
-		config.method = 'get';
-		config.url = $scope.timesheetUrl + '?from='+$scope.from+'&to='+$scope.to;
-
-		console.log(config.url);
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log(response);
-			$scope.timesheet = response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
 	};
 
 	$scope.updateTimesheet = function(){
@@ -102,170 +70,17 @@ app.config(function($interpolateProvider){
 	};
 
 	$scope.getMomentValueOf = function(date){
-return moment(date).valueOf();
+		return moment(date).valueOf();
 	};
 
 	$scope.momentValueSort = function(item){
 		return moment(item.date).valueOf();
 	};
 
-
 	$scope.isBetweenDates = function(shift){
 		return shift.date > $scope.from && shift.date < $scope.to;
 	}
 
-
-
-
-	$scope.categories = null;
-
-
-	$scope.getCategories = function(){
-
-		var config = {};
-		config.method = 'get';
-		config.url= '/basecategories';
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log(response);
-			$scope.categories = response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
-	};
-
-
-
-
-
-
-	$scope.findCategoryById = function(id){
-
-		if ($scope.categories == null){
-			return false;
-		}
-
-		for (var i = $scope.categories.length - 1; i >= 0; i--) {
-
-			if ($scope.categories[i].id = id){
-				return $scope.categories[i];
-			}
-
-		}
-
-	};
-
-
-
-
-
-
-	$scope.locations = null;
-
-
-	$scope.getLocations = function(){
-
-		var config = {};
-		config.method = 'get';
-		config.url= '/locations';
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log("got locations");
-			console.log(response);
-			$scope.locations= response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
-	};
-
-
-	$scope.findLocationById = function(id){
-
-		if ($scope.locations == null){
-			return false;
-		}
-
-		for (var i = $scope.locations.length - 1; i >= 0; i--) {
-
-			if ($scope.locations[i].id = id){
-				return $scope.locations[i];
-			}
-
-		}
-
-	};
-
-
-
-
-
-
-
-
-	$scope.employees = null;
-
-
-	$scope.getEmployees = function(){
-
-		var config = {};
-		config.method = 'get';
-		config.url= '/employees';
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
-		};
-
-		$http(config).then(function successCallback(response) {
-
-			console.log("got employees");
-			console.log(response);
-			$scope.employees = response.data;
-
-
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
-
-	};
-
-
-	$scope.findEmployeeById = function(id){
-
-		if ($scope.employees == null){
-			return false;
-		}
-
-		for (var i = $scope.employees.length - 1; i >= 0; i--) {
-
-			if ($scope.employees[i].id = id){
-				return $scope.employees[i];
-			}
-
-		}
-
-	};
-
-
 	$scope.init();
-
 
 });

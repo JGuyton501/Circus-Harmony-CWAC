@@ -1,12 +1,9 @@
 var app = app || angular.module('circusApp', []);
 
-app.config(function($interpolateProvider){
-	$interpolateProvider.startSymbol('{[').endSymbol(']}');
-})
-.controller('SettingsController', function($scope, $http) {
+app.controller('SettingsController', function($scope, DataService) {
 
 	$scope.init = function(){
-
+		$scope.data = DataService;
 	}
 
 	$scope.init();

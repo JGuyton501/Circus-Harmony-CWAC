@@ -5,6 +5,9 @@ app.config(function($interpolateProvider){
 })
 .controller('AddLocationController', function($scope, $http) {
 
+/* will move this to dataservice and delete this controller */
+
+
 	$scope.location;
 	$scope.addLocationUrl='/addLocation';
 

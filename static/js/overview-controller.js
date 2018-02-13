@@ -3,9 +3,10 @@ var app = app || angular.module('circusApp', []);
 app.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
-.controller('DashboardController', function($scope, $http) {
+.controller('DashboardController', function($scope, DataService) {
 
     $scope.init = function(){
+        $scope.data = DataService;
         $scope.renderChart();
     }
 

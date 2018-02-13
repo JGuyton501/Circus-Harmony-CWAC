@@ -5,6 +5,8 @@ app.config(function($interpolateProvider){
 })
 .controller('AddCategoryController', function($scope, $http) {
 
+/* will move this to dataservice and delete this controller */
+
 	$scope.category;
 	$scope.addCategoryUrl='/addBaseCategory';
 
