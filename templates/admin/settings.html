@@ -5,9 +5,7 @@
 {% block body %}
 
 {% block javascript %}
-    <script type="text/javascript">
-        {{ static_include('js/settings-controller.js') | safe }}
-    </script>
+  <script src="{{ url_for('static', filename='js/settings-controller.js') }}"></script>
 {% endblock %}
 
 <div ng-controller="SettingsController" id="settings">

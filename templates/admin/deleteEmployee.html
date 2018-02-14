@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Delete Employee {% endblock %}
-
-
-{% block body %}
-<div ng-controller="DeleteEmployeeController">
+<div>
 	<div class="card">
 		<h5 class="card-header">Delete Employee</h5>
 		<div class="card-body">
@@ -31,9 +25,3 @@
 		</div>
 	</div>
 </div>
-{% block javascript %}
-<script type="text/javascript">
-	{{ static_include("js/delete-employee-controller.js") | safe }}
-</script>
-{% endblock %}
-{% endblock %}

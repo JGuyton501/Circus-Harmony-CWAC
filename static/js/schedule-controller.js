@@ -6,16 +6,11 @@ app.controller('ScheduleController', function($scope, DataService) {
 
 		$scope.data = DataService;
 
-		$scope.timesheetUrl = '/shifts';
-
-		$scope.timesheet = null;
 		$scope.today = moment();
 		$scope.from = moment().subtract(7, 'days');
 		$scope.to = moment().add(7, 'days');
 
 		$scope.setDefaultDates();
-		$scope.getTimesheet();
-
 	}
 
 	$scope.setDefaultDates = function(){
@@ -29,8 +24,12 @@ app.controller('ScheduleController', function($scope, DataService) {
 	};
 
 	$scope.updateTimesheet = function(){
-		$scope.getTimesheet();
+		$scope.getTimeframe();
+		$scope.data.helpers.getShifts();
 	};
+
+
+
 
 	$scope.updateShift = function(shift){
 
@@ -73,8 +72,8 @@ app.controller('ScheduleController', function($scope, DataService) {
 		return moment(date).valueOf();
 	};
 
-	$scope.momentValueSort = function(item){
-		return moment(item.date).valueOf();
+	$scope.momentValueSort = function(shift){
+		return moment(shift.date).valueOf();
 	};
 
 	$scope.isBetweenDates = function(shift){

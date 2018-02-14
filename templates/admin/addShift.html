@@ -1,12 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Create Shift {% endblock %}
-
-
-{% block body %}
-
-
-<div class="card" ng-controller="AddShiftController">
+<div class="card">
 	<h5 class="card-header">Create Shift</h5>
 	<div class="card-body">
 		<div class=row>
@@ -59,11 +51,3 @@
 		</div>
 	</div>
 </div>
-</div>
-{% block javascript %}
-    <script type="text/javascript">
-        {{ static_include("js/add-shift-controller.js") | safe }}
-    </script>
-{% endblock %}
-
-{% endblock %}

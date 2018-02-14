@@ -304,7 +304,7 @@ def deleteLocation():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-@app.route('/basecategories', methods=["GET"])
+@app.route('/baseCategories', methods=["GET"])
 def getBaseCategories():
     categories = db.session.query(models.BaseCategory).all()
     response = []

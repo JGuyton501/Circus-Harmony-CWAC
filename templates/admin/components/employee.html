@@ -1,20 +1,10 @@
-
-{% block body %}
-
-<div ng-controller="EmployeeController">
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
-  </div>
-  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in employees" class="custom-select" id="inputGroupSelect01" ng-model="employee" ng-change="setEmployee()">
-  
-  </select>
+<div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
+	  </div>
+	  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in employees" class="custom-select" id="inputGroupSelect01" ng-model="employee" ng-change="setEmployee()">
+	  
+	  </select>
+	</div>
 </div>
-</div>
-
-{% block javascript %}
-    <script type="text/javascript">
-        {{ static_include("js/employee-controller.js") | safe }}
-    </script>
-{% endblock %}
-{% endblock %}

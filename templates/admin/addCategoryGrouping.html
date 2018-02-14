@@ -1,11 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Create Category Grouping {% endblock %}
-
-
-{% block body %}
-
-<div class="card" ng-controller="AddGroupingController">
+<div class="card">
 	<h5 class="card-header">Create Category Grouping</h5>
 	<div class="card-body">
 		<div class=row>
@@ -38,17 +31,10 @@
 				</div>
 			</div>
 		</div>		
-	<div class=row>
-		<div class="col-sm">
-			<a href="#" class="btn btn-primary" ng-click="saveGrouping()">Save Category Grouping</a>
+		<div class=row>
+			<div class="col-sm">
+				<a href="#" class="btn btn-primary" ng-click="saveGrouping()">Save Category Grouping</a>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
-{% block javascript %}
-    <script type="text/javascript">
-        {{ static_include("js/add-grouping-controller.js") | safe }}
-    </script>
-{% endblock %}
-
-{% endblock %}

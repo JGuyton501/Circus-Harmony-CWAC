@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Delete Location {% endblock %}
-
-
-{% block body %}
-<div ng-controller="DeleteLocationController">
+<div>
 	<div class="card">
 		<h5 class="card-header">Delete Location</h5>
 		<div class="card-body">
@@ -31,9 +25,3 @@
 		</div>
 	</div>
 </div>
-{% block javascript %}
-<script type="text/javascript">
-	{{ static_include("js/delete-location-controller.js") | safe }}
-</script>
-{% endblock %}
-{% endblock %}

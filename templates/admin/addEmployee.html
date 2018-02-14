@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Add Employee {% endblock %}
-
-
-{% block body %}
-<div ng-controller="AddEmployeeController">
+<div>
 	<div class="card">
 		<h5 class="card-header">Add Employee</h5>
 		<div class="card-body">
@@ -44,15 +38,9 @@
 			
 			<div class=row>
 				<div class="col-sm">
-					<a href="#" class="btn btn-primary" ng-click="saveEmployee()">Save Employee</a>
+					<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addEmployee(employee)">Save Employee</a>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	{% block javascript %}
-	<script type="text/javascript">
-		{{ static_include("js/add-employee-controller.js") | safe }}
-	</script>
-	{% endblock %}
-	{% endblock %}
+</div>
