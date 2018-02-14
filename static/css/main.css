@@ -63,3 +63,35 @@ font-family: Helvetica,Arial,sans-serif;
 #settings .card {
 	border: none;
 }
+
+#update-modal .modal-body {
+	padding: 0;
+}
+
+.settings-buttons ul {
+	padding-bottom: 2em;
+
+}
+
+.settings-buttons li {
+	display: block;
+    float: left;
+    list-style-type: none;
+    padding: .5em;
+    margin-bottom: 1.5em;
+}
+
+.settings-buttons li > a {
+    background: #6610f2;
+    padding: 1em 3em;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 2px;
+}
+
+#settings #accordion .btn-link {
+    font-weight: 900;
+    color: #000;
+    width: 100%;
+    text-align: left;
+}

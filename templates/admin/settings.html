@@ -51,7 +51,13 @@
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
 
-		{% include 'admin/addShift.html' %}
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addShift')">Add Shift</a></li>
+          <li><a href="#" ng-click="main.open('editShift')">Edit Shift</a></li>
+          <li><a href="#" ng-click="main.open('deleteShift')">Delete Shift</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
 
       </div>
     </div>
@@ -68,7 +74,13 @@
       <div class="card-body">
 
 
-		{% include 'admin/addEmployee.html' %}
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addEmployee')">Add Employee</a></li>
+          <li><a href="#" ng-click="main.open('editEmployee')">Edit Employee</a></li>
+          <li><a href="#" ng-click="main.open('deleteEmployee')">Delete Employee</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
 
       </div>
     </div>
@@ -84,7 +96,13 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-		{% include 'admin/addJob.html' %}
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addJob')">Add Job</a></li>
+          <li><a href="#" ng-click="main.open('editJob')">Edit Job</a></li>
+          <li><a href="#" ng-click="main.open('deleteJob')">Delete Job</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
 
       </div>
     </div>
@@ -100,9 +118,14 @@
     <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-    {% include 'admin/addLocation.html' %}
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addLocation')">Add Location</a></li>
+          <li><a href="#" ng-click="main.open('editLocation')">Edit Location</a></li>
+          <li><a href="#" ng-click="main.open('deleteLocation')">Delete Location</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
 
-      </div>
     </div>
   </div>
 </div>
@@ -117,9 +140,16 @@
     <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
 
-    {% include 'admin/addCategory.html' %}
 
-      </div>
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addCategory')">Add Category</a></li>
+          <li><a href="#" ng-click="main.open('editCategory')">Edit Category</a></li>
+          <li><a href="#" ng-click="main.open('deleteCategory')">Delete Category</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
+
+
     </div>
   </div>
 </div>
@@ -134,7 +164,13 @@
     <div id="collapseSix" class="collapse" aria-labelledby="hepadingThree" data-parent="#accordion">
       <div class="card-body">
 
-        <a href="/admin/grouping" target="_blank">Add Category Grouping</a>
+        <ul class="settings-buttons">
+          <li><a href="#" ng-click="main.open('addCategoryGrouping')">Add Grouping</a></li>
+          <li><a href="#" ng-click="main.open('editCategoryGrouping')">Edit Grouping</a></li>
+          <li><a href="#" ng-click="main.open('deleteCategoryGrouping')">Delete Grouping</a></li>
+        </ul>
+        
+        <div style="clear:both;"></div>
 
       </div>
     </div>

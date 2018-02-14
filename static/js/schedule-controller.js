@@ -33,29 +33,36 @@ app.controller('ScheduleController', function($scope, DataService) {
 
 	$scope.updateShift = function(shift){
 
-		console.log(shift);
-
-		var config = {};
-		config.method = 'post';
-		config.url = $scope.timesheetUrl + '/' + shift.shift_id;
-		config.body = shift;
-
-		console.log(config.url);
-
-		config.headers = {
-			'Accept':'application/json',
-			'Content-Type':'application/json',
+		var message = {
+			"title": "Success",
+			"content": shift.shift_id+" was clicked"
 		};
 
-		$http(config).then(function successCallback(response) {
+		DataService.utils.displayMessage(message);
 
-			console.log(response);
-			$scope.timesheet = response.data;
+		console.log(shift);
+
+		// var config = {};
+		// config.method = 'post';
+		// config.url = $scope.timesheetUrl + '/' + shift.shift_id;
+		// config.body = shift;
+
+		// console.log(config.url);
+
+		// config.headers = {
+		// 	'Accept':'application/json',
+		// 	'Content-Type':'application/json',
+		// };
+
+		// $http(config).then(function successCallback(response) {
+
+		// 	console.log(response);
+		// 	$scope.timesheet = response.data;
 
 
-		}, function errorCallback(response) {
-			console.log(response);
-		}); 
+		// }, function errorCallback(response) {
+		// 	console.log(response);
+		// }); 
 
 	};
 

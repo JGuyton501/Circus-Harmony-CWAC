@@ -34,6 +34,20 @@ app.service('DataService', function ($http) {
     	};
     };
 
+    DataService.utils.displayMessage = function(message){
+
+		DataService.utils.message = {};
+		DataService.utils.message.title = message.title || null;
+		DataService.utils.message.content = message.content || "";
+		DataService.utils.message.action = message.action || "Close";
+
+		$('#message').modal({
+			keyboard: false,
+			focus: true
+		});
+
+	};
+
     /* Getters */
 
 	DataService.helpers.getBaseCategories = function(){

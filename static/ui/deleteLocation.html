@@ -1,0 +1,27 @@
+<div>
+	<div class="card">
+		<h5 class="card-header">Delete Location</h5>
+		<div class="card-body">
+			<div class=row>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Location</label>
+						</div>
+						<select ng-options="location as location.name for location in locations" class="custom-select" id="inputGroupSelect01" ng-model="location" ng-change="setLocation()">
+							
+						</select>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class=row>
+			<div class="col-sm">
+				<a href="#" class="btn btn-primary" ng-click="deleteLocation()">Delete Location</a>
+			</div>
+		</div>
+	</div>
+</div>
