@@ -183,7 +183,8 @@ def addShift():
         content.get('end_time'),
         content.get('location'),
         None,
-        content.get('complete')
+        content.get('complete'),
+        content.get('comments')
     )
     db.session.add(shift)
     db.session.commit()

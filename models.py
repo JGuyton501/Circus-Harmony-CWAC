@@ -35,6 +35,7 @@ class Shift(db.Model):
     location = db.Column(db.String(120))
     category_id = db.Column(db.Integer)
     complete = db.Column(db.Boolean)
+    comments = db.Column(db.String(400))
 
     def __init__(
         self,
@@ -44,7 +45,8 @@ class Shift(db.Model):
         end_time,
         location,
         category_id,
-        complete
+        complete,
+        comments
     ):
 
         self.employee_id = employee_id
@@ -54,6 +56,7 @@ class Shift(db.Model):
         self.location = location
         self.category_id = category_id
         self.complete = complete
+        self.comments = comments
 
     def __repr__(self):
         return '{shift_id:%s, employee_id: %s, date: %s, start_time: %s, end_time: %s, location: %s, category_id: %s, complete: %s }'%(self.shift_id, self.employee_id, self.date, self.start_time, self.end_time, self.location, self.category_id, self.complete)
