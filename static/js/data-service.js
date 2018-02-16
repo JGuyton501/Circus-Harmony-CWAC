@@ -211,6 +211,8 @@ app.service('DataService', function ($http) {
 				"content": response.data.message
 			});
 
+			DataService.helpers.getBaseCategories();
+
 		}, function errorCallback(response) {
 
 			DataService.utils.displayMessage({
@@ -233,6 +235,8 @@ app.service('DataService', function ($http) {
 				"title": "Success",
 				"content": response.data.message
 			});
+
+			DataService.helpers.getCategories();
 
 		}, function errorCallback(response) {
 
@@ -257,6 +261,8 @@ app.service('DataService', function ($http) {
 				"content": response.data.message
 			});
 
+			DataService.helpers.getEmployees();
+
 		}, function errorCallback(response) {
 
 			DataService.utils.displayMessage({
@@ -279,6 +285,8 @@ app.service('DataService', function ($http) {
 				"title": "Success",
 				"content": response.data.message
 			});
+
+			DataService.helpers.getJobs();
 
 		}, function errorCallback(response) {
 
@@ -303,6 +311,8 @@ app.service('DataService', function ($http) {
 				"content": response.data.message
 			});
 
+			DataService.helpers.getLocations();
+
 		}, function errorCallback(response) {
 
 			DataService.utils.displayMessage({
@@ -325,6 +335,8 @@ app.service('DataService', function ($http) {
 				"title": "Success",
 				"content": response.data.message
 			});
+
+			DataService.helpers.getShifts();
 
 		}, function errorCallback(response) {
 
