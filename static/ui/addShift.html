@@ -1,13 +1,19 @@
 <div class="card">
-	<h5 class="card-header">Create Shift</h5>
+	<h5 class="card-header">Add Shift</h5>
 	<div class="card-body">
-		<div class=row>
-			<div class="col-sm" ng-bind-html="static/ui/components/employee.html"></div>
-			<div class="col-sm" ng-bind-html="static/ui/components/job.html"></div>
+		<div class="row">
+			<div class="col-sm-6">
+				<employee-select></employee-select>
+			</div>
+			<div class="col-sm-6">
+				<job-select></job-select>
+			</div>
 		</div>
-		<div class=row>
-			<div class="col-sm" ng-bind-html="static/ui/components/location.html"></div>
-			<div class="col-sm">
+		<div class="row">
+			<div class="col-sm-6">
+				<location-select></location-select>
+			</div>
+			<div class="col-sm-6">
 
 
 				<div class="input-group mb-3">
@@ -18,8 +24,8 @@
 				</div>
 			</div>
 		</div>
-		<div class=row>
-			<div class="col-sm">
+		<div class="row">
+			<div class="col-sm-6">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="inputGroupSelect01">Start Time</label>
@@ -27,7 +33,7 @@
 					<input type="time" class="form-control" aria-label="starttime" aria-describedby="basic-addon2" id="shift-starttime" ng-model="shift.start_time">
 				</div>
 			</div>
-			<div class="col-sm">
+			<div class="col-sm-6">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="inputGroupSelect02">End Time</label>
@@ -36,12 +42,12 @@
 				</div>
 			</div>
 		</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addShift(shift); shift=null">Add Shift</a>
+		</div>
 	</div>
 
-
-	<div class=row>
-		<div class="col-sm">
-			<a href="#" class="btn btn-primary" ng-click="saveShift()">Save Shift</a>
-		</div>
 	</div>
 </div>

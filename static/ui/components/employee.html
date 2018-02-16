@@ -3,7 +3,7 @@
 	  <div class="input-group-prepend">
 	    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
 	  </div>
-	  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in employees" class="custom-select" id="inputGroupSelect01" ng-model="employee" ng-change="setEmployee()">
+	  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in main.data.employees" class="custom-select" id="inputGroupSelect01" ng-model="shift.employee" ng-change="setEmployee()">
 	  
 	  </select>
 	</div>

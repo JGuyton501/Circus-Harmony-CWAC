@@ -75,8 +75,7 @@
 	<!-- Update Modal -->
 	<div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="message" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body" ng-bind-html="main.getCurrentUITemplate()"></div>
+			<div class="modal-content" ng-include src="main.getCurrentUI()">
 			</div>
 		</div>
 	</div>

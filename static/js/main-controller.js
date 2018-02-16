@@ -4,7 +4,28 @@ app.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[').endSymbol(']}');
 })
 
-.controller('MainController', function(DataService, $sce, $templateRequest) {
+
+
+.directive("employeeSelect", function() {
+    return {
+        template : '<div ng-include src="main.rootUri + \'static/ui/components/employee.html\'"></div>'
+    };
+})
+
+.directive("jobSelect", function() {
+    return {
+        template : '<div ng-include src="main.rootUri + \'static/ui/components/job.html\'"></div>'
+    };
+})
+
+.directive("locationSelect", function() {
+    return {
+        template : '<div ng-include src="main.rootUri + \'static/ui/components/location.html\'"></div>'
+    };
+})
+
+
+.controller('MainController', function(DataService, $sce, $templateRequest, $scope, $compile) {
 
 	var main = this;
 
@@ -36,26 +57,25 @@ app.config(function($interpolateProvider){
 			return;
 		}
 
-		$templateRequest(pages[page]).then(function(template) {
+		main.currentUI = pages[page];
 
-			main.currentUITemplate = template;
-
-			$('#update-modal').modal({
-				keyboard: false,
-				focus: true
-			});
-
-		}, function(){
-			DataService.utils.displayMessage({
-				"title": "Error",
-				"content": "There was an error loading the requested UI."
-			});
+		$('#update-modal').modal({
+			keyboard: false,
+			focus: true
 		});
 
 	};
 
-  	main.getCurrentUITemplate = function(){
-  		return $sce.trustAsHtml(main.currentUITemplate);
-  	};
+
+    main.getCurrentUI = function() {
+        return main.currentUI;
+    };
+
+
+
+  	main.test = function(shift){
+  		console.log(shift);
+  		main.data.helpers.addShift(shift);
+  	}
 
 });

@@ -1,45 +1,44 @@
-<div>
-	<div class="card">
-		<h5 class="card-header">Add Employee</h5>
-		<div class="card-body">
-			<div class=row>
-				<div class="col-sm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						</div>
-						<input type="text" class="form-control" placeholder="First Name" aria-label="firstName" ng-model="employee.first_name"/>
-					</div>
-				</div>
-				<div class="col-sm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						</div>
-						<input type="text" class="form-control" placeholder="Last Name" aria-label="lastName" ng-model="employee.last_name"/>
-					</div>
-				</div>
-			</div>
 
-			<div class=row>
-				<div class="col-sm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						</div>
-						<input type="text" class="form-control" placeholder="Email" aria-label="email_address" ng-model="employee.email_address"/>
+<div class="card">
+	<h5 class="card-header">Add Employee</h5>
+	<div class="card-body">
+		<div class=row>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
 					</div>
-				</div>
-				<div class="col-sm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						</div>
-						<input type="text" class="form-control" placeholder="Phone" aria-label="phone_number" ng-model="employee.phone_number"/>
-					</div>
+					<input type="text" class="form-control" placeholder="First Name" aria-label="firstName" ng-model="employee.first_name"/>
 				</div>
 			</div>
-			
-			<div class=row>
-				<div class="col-sm">
-					<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addEmployee(employee)">Save Employee</a>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					</div>
+					<input type="text" class="form-control" placeholder="Last Name" aria-label="lastName" ng-model="employee.last_name"/>
 				</div>
+			</div>
+		</div>
+
+		<div class=row>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					</div>
+					<input type="email" class="form-control" placeholder="Email" aria-label="email_address" ng-model="employee.email_address"/>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					</div>
+					<input type="tel" class="form-control" placeholder="Phone" aria-label="phone_number" ng-model="employee.phone_number"/>
+				</div>
+			</div>
+		</div>
+		
+		<div class=row>
+			<div class="col-sm">
+				<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addEmployee(employee); employee=null">Add Employee</a>
 			</div>
 		</div>
 	</div>

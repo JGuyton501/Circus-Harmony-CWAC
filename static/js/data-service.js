@@ -41,6 +41,7 @@ app.service('DataService', function ($http) {
 		DataService.utils.message.content = message.content || "";
 		DataService.utils.message.action = message.action || "Close";
 
+		$('#update-modal').modal('hide');
 		$('#message').modal({
 			keyboard: false,
 			focus: true
@@ -205,10 +206,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding base category."
+			});
+
 		}); 
 
 	};
@@ -220,10 +229,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding category."
+			});
+
 		}); 
 
 	};
@@ -235,10 +252,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding employee."
+			});
+
 		}); 
 
 	};
@@ -250,10 +275,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding job."
+			});
+
 		}); 
 
 	};
@@ -265,10 +298,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding location."
+			});
+
 		}); 
 
 	};
@@ -280,10 +321,18 @@ app.service('DataService', function ($http) {
 
 		$http(config).then(function successCallback(response) {
 
-			console.log(response);
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
 
 		}, function errorCallback(response) {
-			console.log(response);
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding shift."
+			});
+
 		}); 
 
 	};
