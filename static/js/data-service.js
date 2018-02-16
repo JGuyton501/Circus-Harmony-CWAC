@@ -59,14 +59,16 @@ app.service('DataService', function ($http) {
 			DataService.baseCategories = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting base categories."
+			});
 		}); 
 
 	};
 
 	DataService.helpers.getCategories = function(){
 
-		/* this route is broken for me, i think my db needs to be updated */
 		//var config = DataService.utils.getConfig('/categories', 'get');
 		var config = DataService.utils.getConfig('/baseCategories', 'get');
 
@@ -75,7 +77,10 @@ app.service('DataService', function ($http) {
 			DataService.categories = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting categories."
+			});
 		}); 
 
 	};
@@ -89,7 +94,10 @@ app.service('DataService', function ($http) {
 			DataService.employees = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting employees."
+			});
 		}); 
 
 	};
@@ -103,7 +111,10 @@ app.service('DataService', function ($http) {
 			DataService.locations = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting locations."
+			});
 		}); 
 
 	};
@@ -117,7 +128,10 @@ app.service('DataService', function ($http) {
 			DataService.shifts = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting shifts."
+			});
 		}); 
 
 	};
@@ -131,7 +145,10 @@ app.service('DataService', function ($http) {
 			DataService.jobs = response.data;
 
 		}, function errorCallback(response) {
-			console.log('error',response);
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error getting jobs."
+			});
 		}); 
 
 	};

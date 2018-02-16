@@ -9,39 +9,7 @@
 {% endblock %}
 
 <div ng-controller="DashboardController" id="dashboard">
-
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="{{ url_for('dashboard') }}">Dashboard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-
-			<div class="input-group">
-			  <input type="text" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="search">
-			  <div class="input-group-append">
-					<a href="#" class="btn btn-primary" ng-click="">Search</a>
-			  </div>
-			</div>
-
-        </form>
-      </div>
-    </nav>
-
-
-<br>
-<br>
-<br>
-<br>
-
+	
 
 <div class="row">
 	<div class="col-sm-8">

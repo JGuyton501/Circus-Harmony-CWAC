@@ -12,6 +12,45 @@
 
 </head>
 <body ng-controller="MainController as main">
+ 
+	<!--  Fixed Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{{ url_for('dashboard') }}">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+			<div class="input-group">
+			  <input type="text" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="search">
+			  <div class="input-group-append">
+					<a href="#" class="btn btn-primary" ng-click="">Search</a>
+			  </div>
+			</div>
+
+			<div class="input-group">
+			  <input type="date" class="form-control" aria-label="From" aria-describedby="basic-addon2" id="schedule-from-date">
+			  <input type="date" class="form-control" aria-label="To" aria-describedby="basic-addon2" id="schedule-to-date">
+			  <div class="input-group-append">
+					<a href="#" class="btn btn-primary" ng-click="updateTimesheet()">+</a>
+			  </div>
+			</div>
+
+        </form>
+      </div>
+    </nav>
+
+	<br>
+	<br>
+	<br>
+
 
 	<!-- Message Modal -->
 	<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="message" aria-hidden="true">

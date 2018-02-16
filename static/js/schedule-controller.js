@@ -87,6 +87,7 @@ app.controller('ScheduleController', function($scope, DataService) {
 		return shift.date > $scope.from && shift.date < $scope.to;
 	}
 
+
 	$scope.init();
 
 });
