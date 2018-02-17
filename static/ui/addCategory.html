@@ -1,22 +1,30 @@
-<div>
 <div class="card">
-	<h5 class="card-header">Add Category</h5>
+	<h5 class="card-header">
+		Add Category
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</h5>
 	<div class="card-body">
+
+	<form name="categoryForm" ng-submit="main.data.helpers.addCategory(category); category=null">
 		<div class=row>
 			<div class="col-sm">
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				  </div>
-				  <input type="text" class="form-control" placeholder="Category" aria-label="Category" ng-model="category.name"/>
+				  <input type="text" class="form-control" placeholder="Category" aria-label="Category" ng-model="category.name" required/>
 				</div>
 			</div>
 			
-	</div>
-			
-	<div class=row>
-		<div class="col-sm">
-			<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addCategory(); category=null">Save Category</a>
 		</div>
+				
+		<div class=row>
+			<div class="col-sm">
+				<input type="submit" class="btn btn-primary" value="Save Category" />
+			</div>
+		</div>
+
+	</form>
 	</div>
-</div>
 </div>

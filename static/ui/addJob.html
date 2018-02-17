@@ -1,19 +1,26 @@
 <div class="card">
-	<h5 class="card-header">Add Job</h5>
+	<h5 class="card-header">
+		Add Job
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</h5>
 	<div class="card-body">
+
+	<form name="jobForm" ng-submit="main.data.helpers.addJob(job); job=null">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				  </div>
-				  <input type="text" class="form-control" placeholder="Job Name" aria-label="Job" ng-model="job.name"/>
+				  <input type="text" class="form-control" placeholder="Job Name" aria-label="Job" ng-model="job.name" required/>
 				</div>
 			</div>
 		</div>
 			
 		<div class="row">
 			<div class="col-sm-12">
-				<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addJob(job); job=null">Add Job</a>
+				<input type="submit" class="btn btn-primary" value="Add Job"/>
 			</div>
 		</div>
 	</div>

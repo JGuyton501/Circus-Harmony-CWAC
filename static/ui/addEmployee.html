@@ -1,20 +1,27 @@
 
 <div class="card">
-	<h5 class="card-header">Add Employee</h5>
+	<h5 class="card-header">
+		Add Employee
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</h5>
 	<div class="card-body">
+
+	<form name="employeeForm" ng-submit="main.data.helpers.addEmployee(employee); employee=null">
 		<div class=row>
 			<div class="col-sm">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					</div>
-					<input type="text" class="form-control" placeholder="First Name" aria-label="firstName" ng-model="employee.first_name"/>
+					<input type="text" class="form-control" placeholder="First Name" aria-label="firstName" ng-model="employee.first_name" required/>
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					</div>
-					<input type="text" class="form-control" placeholder="Last Name" aria-label="lastName" ng-model="employee.last_name"/>
+					<input type="text" class="form-control" placeholder="Last Name" aria-label="lastName" ng-model="employee.last_name" required/>
 				</div>
 			</div>
 		</div>
@@ -31,15 +38,18 @@
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					</div>
-					<input type="tel" class="form-control" placeholder="Phone" aria-label="phone_number" ng-model="employee.phone_number"/>
+					<input type="tel" class="form-control" placeholder="Phone" aria-label="phone_number" ng-model="employee.phone_number" required/>
 				</div>
 			</div>
 		</div>
 		
 		<div class=row>
 			<div class="col-sm">
-				<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addEmployee(employee); employee=null">Add Employee</a>
+				<input type="submit" class="btn btn-primary" value="Add Employee">
 			</div>
 		</div>
+
+	</form>
+
 	</div>
 </div>

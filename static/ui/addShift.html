@@ -1,6 +1,13 @@
 <div class="card">
-	<h5 class="card-header">Add Shift</h5>
+	<h5 class="card-header">
+		Add Shift
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</h5>
 	<div class="card-body">
+
+	<form name="shiftForm" ng-submit="main.data.helpers.addShift(shift); shift=null">
 		<div class="row">
 			<div class="col-sm-6">
 				<employee-select></employee-select>
@@ -45,9 +52,11 @@
 
 	<div class="row">
 		<div class="col-sm-12">
-			<a href="#" class="btn btn-primary" ng-click="main.data.helpers.addShift(shift); shift=null">Add Shift</a>
+			<input type="submit" class="btn btn-primary" value="Add Shift"/>
 		</div>
 	</div>
+
+	</form>
 
 	</div>
 </div>
