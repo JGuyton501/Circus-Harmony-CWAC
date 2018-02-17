@@ -31,6 +31,7 @@
 
 						<p class="category" ng-if="data.helpers.getCategoryById(shift.category_id)!==false">{[ data.helpers.getCategoryById(shift.category_id).name ]}</p>
 						<p class="location" ng-if="data.helpers.getLocationById(shift.location)!==false">{[ data.helpers.getLocationById(shift.location).name  ]}</p>
+						<p>{[shift.comments]}</p>
 						
 					</div>
 					<div class="col-sm-4 text-center">

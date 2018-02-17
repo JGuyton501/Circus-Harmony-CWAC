@@ -28,7 +28,7 @@ app.service('DataService', function ($http) {
 			"Content-Type":"application/json",
 		};
     	return {
-    		"url": url,
+    		"url": CIRCUS.uri + url,
     		"method": method,
     		"headers": headers
     	};
@@ -53,7 +53,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getBaseCategories = function(){
 
-		var config = DataService.utils.getConfig('/baseCategories', 'get');
+		var config = DataService.utils.getConfig('baseCategories', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -71,7 +71,7 @@ app.service('DataService', function ($http) {
 	DataService.helpers.getCategories = function(){
 
 		//var config = DataService.utils.getConfig('/categories', 'get');
-		var config = DataService.utils.getConfig('/baseCategories', 'get');
+		var config = DataService.utils.getConfig('baseCategories', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -88,7 +88,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getEmployees = function(){
 
-		var config = DataService.utils.getConfig('/employees', 'get');
+		var config = DataService.utils.getConfig('employees', 'get');
 
 		$http(config).then(function successCallback(response) {
 			
@@ -105,7 +105,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getLocations = function(){
 
-		var config = DataService.utils.getConfig('/locations', 'get');
+		var config = DataService.utils.getConfig('locations', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -122,7 +122,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getShifts = function(){
 
-		var config = DataService.utils.getConfig('/shifts', 'get');
+		var config = DataService.utils.getConfig('shifts', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -139,7 +139,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getJobs = function(){
 
-		var config = DataService.utils.getConfig('/jobs', 'get');
+		var config = DataService.utils.getConfig('jobs', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -201,7 +201,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addBaseCategory = function(baseCategory){
 
-		var config = DataService.utils.getConfig('/addBaseCategory', 'post');
+		var config = DataService.utils.getConfig('addBaseCategory', 'post');
 		config.data = baseCategory;
 
 		$http(config).then(function successCallback(response) {
@@ -226,7 +226,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addCategory = function(category){
 
-		var config = DataService.utils.getConfig('/addCategory', 'post');
+		var config = DataService.utils.getConfig('addCategory', 'post');
 		config.data = category;
 
 		$http(config).then(function successCallback(response) {
@@ -251,7 +251,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addEmployee = function(employee){
 
-		var config = DataService.utils.getConfig('/addEmployee', 'post');
+		var config = DataService.utils.getConfig('addEmployee', 'post');
 		config.data = employee;
 
 		$http(config).then(function successCallback(response) {
@@ -276,7 +276,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addJob = function(job){
 
-		var config = DataService.utils.getConfig('/addJob', 'post');
+		var config = DataService.utils.getConfig('addJob', 'post');
 		config.data = job;
 
 		$http(config).then(function successCallback(response) {
@@ -301,7 +301,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addLocation = function(location){
 
-		var config = DataService.utils.getConfig('/addLocation', 'post');
+		var config = DataService.utils.getConfig('addLocation', 'post');
 		config.data = location;
 
 		$http(config).then(function successCallback(response) {
@@ -326,7 +326,7 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.addShift = function(shift){
 
-		var config = DataService.utils.getConfig('/addShift', 'post');
+		var config = DataService.utils.getConfig('addShift', 'post');
 		config.data = shift;
 
 		$http(config).then(function successCallback(response) {

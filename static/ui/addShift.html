@@ -10,15 +10,15 @@
 	<form name="shiftForm" ng-submit="main.data.helpers.addShift(shift); shift=null">
 		<div class="row">
 			<div class="col-sm-6">
-				<employee-select></employee-select>
+				<employee-select ng-model="shift.employee_id"></employee-select>
 			</div>
 			<div class="col-sm-6">
-				<job-select></job-select>
+				<category-select ng-model="shift.category"></category-select>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-				<location-select></location-select>
+				<location-select ng-model="shift.location"></location-select>
 			</div>
 			<div class="col-sm-6">
 

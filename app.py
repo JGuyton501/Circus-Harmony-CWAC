@@ -12,7 +12,7 @@ import pytz
 app = Flask(__name__)
 app.debug = True
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost/circus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ugozwxkr:mdQ1clGViIGjn8VD8WtT46yk9hOcG-Pl@babar.elephantsql.com:5432/ugozwxkr'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
@@ -169,7 +169,8 @@ def getShifts():
             'end_time': s['end_time'],
             'location': s['location'],
             'category_id': s['category_id'],
-            'complete': s['complete']
+            'complete': s['complete'],
+            'comments': s['comments']
             })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
