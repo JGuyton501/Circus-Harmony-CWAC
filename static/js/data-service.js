@@ -340,6 +340,8 @@ app.service('DataService', function ($http) {
 
 		}, function errorCallback(response) {
 
+			console.log(response)
+
 			DataService.utils.displayMessage({
 				"title": response.statusText,
 				"content": "There was an error adding shift."

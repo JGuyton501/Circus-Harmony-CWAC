@@ -18,54 +18,13 @@ app.controller('ScheduleController', function($scope, DataService) {
 		$('#schedule-to-date').val($scope.renderDate($scope.to, 'YYYY-MM-DD'));
 	};
 
-	$scope.getTimeframe = function(){
-		$scope.from = $('#schedule-from-date').val();
-		$scope.to = $('#schedule-to-date').val();
-	};
-
-	$scope.updateTimesheet = function(){
-		$scope.getTimeframe();
-		$scope.data.helpers.getShifts();
-	};
-
-
-
 
 	$scope.updateShift = function(shift){
-
-		var message = {
+		DataService.utils.displayMessage({
 			"title": "Success",
 			"content": shift.shift_id+" was clicked"
-		};
-
-		DataService.utils.displayMessage(message);
-
-		console.log(shift);
-
-		// var config = {};
-		// config.method = 'post';
-		// config.url = $scope.timesheetUrl + '/' + shift.shift_id;
-		// config.body = shift;
-
-		// console.log(config.url);
-
-		// config.headers = {
-		// 	'Accept':'application/json',
-		// 	'Content-Type':'application/json',
-		// };
-
-		// $http(config).then(function successCallback(response) {
-
-		// 	console.log(response);
-		// 	$scope.timesheet = response.data;
-
-
-		// }, function errorCallback(response) {
-		// 	console.log(response);
-		// }); 
-
+		});
 	};
-
 
 	$scope.renderDate = function(date, format){
 		if (date instanceof moment){
@@ -84,9 +43,22 @@ app.controller('ScheduleController', function($scope, DataService) {
 	};
 
 	$scope.isBetweenDates = function(shift){
-		return shift.date > $scope.from && shift.date < $scope.to;
+		return $scope.getMomentValueOf(shift.date) > $scope.from && $scope.getMomentValueOf(shift.date) < $scope.to;
 	}
 
+
+
+
+	$scope.isPast = function(shift){
+		return $scope.getMomentValueOf(shift.date) < moment().startOf('day');
+	};
+	$scope.isCurrent = function(shift){
+		return $scope.getMomentValueOf(shift.date) > moment().startOf('day')
+				&& $scope.getMomentValueOf(shift.date) < moment().endOf('day');
+	};
+	$scope.isFuture = function(shift){
+		return $scope.getMomentValueOf(shift.date) > moment().endOf('day');
+	};
 
 	$scope.init();
 

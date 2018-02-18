@@ -11,7 +11,10 @@
 <div ng-controller="ScheduleController" id="schedule">
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" ng-repeat="shift in data.shifts | orderBy: -momentValueSort" > <!-- ng-if="isBetweenDates(shift)" -->
+    <li class="list-group-item" 
+    ng-class="{past: isPast(shift), current: isCurrent(shift), future: isFuture(shift), complete: shift.complete, incomplete: !shift.complete}"
+    ng-repeat="shift in data.shifts | orderBy: -momentValueSort" 
+    ng-if="isBetweenDates(shift)">
 
 		<div class="row">
 			<div class="col-sm-12" style="padding: 2em;">
