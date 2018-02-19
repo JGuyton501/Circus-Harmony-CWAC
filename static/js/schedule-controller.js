@@ -3,13 +3,14 @@ var app = app || angular.module('circusApp', []);
 app.controller('ScheduleController', function($scope, DataService) {
 
 	$scope.init = function(){
-
 		$scope.data = DataService;
+
+		$scope.firstCurrent = null;
+
 
 		$scope.today = moment();
 		$scope.from = moment().subtract(7, 'days');
 		$scope.to = moment().add(7, 'days');
-
 		$scope.setDefaultDates();
 	}
 
@@ -53,13 +54,40 @@ app.controller('ScheduleController', function($scope, DataService) {
 		return $scope.getMomentValueOf(shift.date) < moment().startOf('day');
 	};
 	$scope.isCurrent = function(shift){
-		return $scope.getMomentValueOf(shift.date) > moment().startOf('day')
+
+		var isCurrent = $scope.getMomentValueOf(shift.date) > moment().startOf('day')
 				&& $scope.getMomentValueOf(shift.date) < moment().endOf('day');
+
+		if (isCurrent&&$scope.firstCurrent==null){
+			$scope.firstCurrent = shift.shift_id;
+		}
+
+		return isCurrent;
 	};
 	$scope.isFuture = function(shift){
 		return $scope.getMomentValueOf(shift.date) > moment().endOf('day');
 	};
 
-	$scope.init();
+	$scope.scrollToCurrent = function(){
+		//document.getElementById("current").scrollIntoView();
+		var yOffset = $('#current').offset().top;
+		window.scrollTo(0, yOffset-100);
 
+		return null;
+	};
+
+	$scope.getShiftDuration = function(shift){
+		var ms = moment(shift.end_time).diff(moment(shift.start_time));
+		var d = moment.duration(ms);
+		var hours = d.hours();
+		var minutes = d.minutes();
+
+		if (hours > 0){
+			return hours + "H " +minutes + "M";
+		} else {
+			return minutes + " M";
+		}
+	};
+
+	$scope.init();
 });

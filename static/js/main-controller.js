@@ -60,9 +60,12 @@ app.config(function($interpolateProvider){
 	};
 
 	main.updateScheduleView = function(){
+		main.data.shifts = [];
 		main.data.helpers.getShifts();
 		main.getTimeframe();
-		
+
+
+
 		/*
 		DataService.utils.displayMessage({
 			"title": "Success",

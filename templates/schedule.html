@@ -13,11 +13,13 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item" 
     ng-class="{past: isPast(shift), current: isCurrent(shift), future: isFuture(shift), complete: shift.complete, incomplete: !shift.complete}"
-    ng-repeat="shift in data.shifts | orderBy: -momentValueSort" 
+    ng-repeat="shift in data.shifts | orderBy: momentValueSort" 
     ng-if="isBetweenDates(shift)">
 
+	<a id="current" ng-if="shift.shift_id==firstCurrent">{[scrollToCurrent()]}</a>
+
 		<div class="row">
-			<div class="col-sm-12" style="padding: 2em;">
+			<div class="col-sm-12" style="padding: 1em;">
 			
 				<div class="row">
 					<div class="col-sm-4 text-center">
@@ -34,21 +36,24 @@
 
 						<p class="category" ng-if="data.helpers.getCategoryById(shift.category_id)!==false">{[ data.helpers.getCategoryById(shift.category_id).name ]}</p>
 						<p class="location" ng-if="data.helpers.getLocationById(shift.location)!==false">{[ data.helpers.getLocationById(shift.location).name  ]}</p>
-						<p>{[shift.comments]}</p>
 						
 					</div>
 					<div class="col-sm-4 text-center">
 
-						<div class="btn-group" role="group" aria-label="Basic example">
+						<div role="group">
 							<a href="#" class="btn btn-primary">-15</a>
-							<a href="#" class="btn btn-default" disabled>1 Hr</a>
+							<span style="padding: 0 1em;">{[getShiftDuration(shift)]}</span>
 							<a href="#" class="btn btn-primary">+15</a>
 						</div>
 
 						<div>
-							<input type="checkbox" ng-model="shift.complete" ng-change="updateShift(shift)" class="confirmation-check" >
+							<input type="checkbox" ng-model="shift.complete" ng-change="updateShift(shift)" 
+							class="confirmation-check" >
 						</div>
 
+					</div>
+					<div class="col-sm-12 text-center" ng-if="shift.comments">
+						<p><strong>Comment:</strong> {[shift.comments]}</p>
 					</div>
 				</div>
 
@@ -59,5 +64,48 @@
   </ul>
 
 </div>
+
+
+<style>
+#schedule .past {
+	background-color: #ddd;
+	color: #888;
+}
+
+#schedule .current {
+	font-weight: bold;
+}
+
+#schedule .future {
+	background-color: #ddd;
+	font-style: italic;
+}
+
+#schedule .complete {
+	color: green;
+}
+
+#schedule .incomplete {
+
+}
+
+
+.container {
+	max-width: unset !important;
+	padding-right: initial !important;
+	padding-left: initial !important;
+	margin-right: initial !important;
+	margin-left: initial !important;
+}
+
+
+
+
+
+
+p.shift-date {
+	margin-bottom: 0;
+}
+</style>
 
 {% endblock %}
