@@ -4,10 +4,7 @@ app.controller('ScheduleController', function($scope, DataService) {
 
 	$scope.init = function(){
 		$scope.data = DataService;
-
-		$scope.firstCurrent = null;
-
-
+		$scope.nextShift = null;
 		$scope.today = moment();
 		$scope.from = moment().subtract(7, 'days');
 		$scope.to = moment().add(7, 'days');
@@ -18,7 +15,6 @@ app.controller('ScheduleController', function($scope, DataService) {
 		$('#schedule-from-date').val($scope.renderDate($scope.from, 'YYYY-MM-DD'));
 		$('#schedule-to-date').val($scope.renderDate($scope.to, 'YYYY-MM-DD'));
 	};
-
 
 	$scope.updateShift = function(shift){
 		DataService.utils.displayMessage({
@@ -47,9 +43,6 @@ app.controller('ScheduleController', function($scope, DataService) {
 		return $scope.getMomentValueOf(shift.date) > $scope.from && $scope.getMomentValueOf(shift.date) < $scope.to;
 	}
 
-
-
-
 	$scope.isPast = function(shift){
 		return $scope.getMomentValueOf(shift.date) < moment().startOf('day');
 	};
@@ -58,21 +51,25 @@ app.controller('ScheduleController', function($scope, DataService) {
 		var isCurrent = $scope.getMomentValueOf(shift.date) > moment().startOf('day')
 				&& $scope.getMomentValueOf(shift.date) < moment().endOf('day');
 
-		if (isCurrent&&$scope.firstCurrent==null){
-			$scope.firstCurrent = shift.shift_id;
+		if (isCurrent&&$scope.nextShift==null){
+			$scope.nextShift = shift.shift_id;
 		}
 
 		return isCurrent;
 	};
 	$scope.isFuture = function(shift){
-		return $scope.getMomentValueOf(shift.date) > moment().endOf('day');
+		var isFuture =  $scope.getMomentValueOf(shift.date) > moment().endOf('day');
+
+		if (isFuture&&$scope.nextShift==null){
+			$scope.nextShift = shift.shift_id;
+		}
+
+		return isFuture;
 	};
 
-	$scope.scrollToCurrent = function(){
-		//document.getElementById("current").scrollIntoView();
-		var yOffset = $('#current').offset().top;
+	$scope.scrollToNext = function(){
+		var yOffset = $('#next').offset().top;
 		window.scrollTo(0, yOffset-100);
-
 		return null;
 	};
 
@@ -83,9 +80,9 @@ app.controller('ScheduleController', function($scope, DataService) {
 		var minutes = d.minutes();
 
 		if (hours > 0){
-			return hours + "H " +minutes + "M";
+			return hours + "h " +minutes + "m";
 		} else {
-			return minutes + " M";
+			return minutes + " m";
 		}
 	};
 
