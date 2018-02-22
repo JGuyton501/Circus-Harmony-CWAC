@@ -1,21 +1,21 @@
 <div class="card">
 	<h5 class="card-header">
-		Delete Employee
+		Delete Job
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</h5>
 	<div class="card-body">
 
-	<form name="deleteEmployee" ng-submit="main.data.helpers.deleteEmployee(employee)">
+	<form name="deleteJob" ng-submit="main.data.helpers.deleteJob(job)">
 		<div class="row">
 			<div class="col-sm-12">
-				<employee-select ng-model="employee"></employee-select>
+				<job-select ng-model="job"></job-select>
 			</div>
 		</div>
 		<div class=row>
 			<div class="col-sm-12">
-				<input type="submit" class="btn btn-primary" value= "Delete Employee">
+				<input type="submit" class="btn btn-primary" value= "Delete Job">
 			</div>
 		</div>
 	</div>

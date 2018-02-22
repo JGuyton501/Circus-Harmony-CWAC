@@ -26,6 +26,8 @@ app.config(function($interpolateProvider){
 		pages["addLocation"] = main.uri + "static/ui/addLocation.html";
 		pages["deleteEmployee"] = main.uri + "static/ui/deleteEmployee.html";
 		pages["deleteLocation"] = main.uri + "static/ui/deleteLocation.html";
+		pages["deleteJob"] = main.uri + "static/ui/deleteJob.html";
+		pages["deleteCategory"] = main.uri + "static/ui/deleteCategory.html";
 
 		if (!pages[page]){
 			DataService.utils.displayMessage({

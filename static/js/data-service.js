@@ -195,12 +195,26 @@ app.service('DataService', function ($http) {
 		}
 
 	};
+	
+	DataService.helpers.getJobById = function(id){
+
+		if (typeof DataService.jobs == 'undefined'){
+			return false;
+		}
+
+		for (var i = DataService.jobs.length - 1; i >= 0; i--) {
+			if (DataService.jobs[i].id = id){
+				return DataService.jobs[i];
+			}
+		}
+
+	};
 
 
 	/* Setters */
 
 	DataService.helpers.addBaseCategory = function(baseCategory){
-
+console.log("adding base category: ", baseCategory);
 		var config = DataService.utils.getConfig('addBaseCategory', 'post');
 		config.data = baseCategory;
 
@@ -225,7 +239,7 @@ app.service('DataService', function ($http) {
 	};
 
 	DataService.helpers.addCategory = function(category){
-
+		console.log("adding category grouping", category);
 		var config = DataService.utils.getConfig('addCategory', 'post');
 		config.data = category;
 
@@ -274,6 +288,31 @@ app.service('DataService', function ($http) {
 
 	};
 
+	DataService.helpers.deleteEmployee = function(employee_id){
+		var config = DataService.utils.getConfig('deleteEmployee', 'post');
+		var employee=DataService.helpers.getEmployeeById(employee_id);
+		config.data = employee;
+
+		$http(config).then(function successCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
+
+			DataService.helpers.getEmployees();
+
+		}, function errorCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error deleting an employee."
+			});
+
+		}); 
+
+	};
+
 	DataService.helpers.addJob = function(job){
 
 		var config = DataService.utils.getConfig('addJob', 'post');
@@ -293,6 +332,31 @@ app.service('DataService', function ($http) {
 			DataService.utils.displayMessage({
 				"title": response.statusText,
 				"content": "There was an error adding job."
+			});
+
+		}); 
+
+	};
+	DataService.helpers.deleteJob = function(job_id){
+		console.log('job id: ', job_id);
+		var job=DataService.helpers.getJobById(job_id);
+		console.log('job: ', job);
+		var config = DataService.utils.getConfig('deleteJob', 'post');
+		config.data = job;
+		$http(config).then(function successCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
+
+			DataService.helpers.getJobs();
+
+		}, function errorCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error deleting job."
 			});
 
 		}); 
@@ -318,6 +382,31 @@ app.service('DataService', function ($http) {
 			DataService.utils.displayMessage({
 				"title": response.statusText,
 				"content": "There was an error adding location."
+			});
+
+		}); 
+
+	};
+
+	DataService.helpers.deleteLocation = function(location_id){
+		var location=DataService.helpers.getLocationById(location_id);
+		var config = DataService.utils.getConfig('deleteLocation', 'post');
+		config.data = location;
+
+		$http(config).then(function successCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
+
+			DataService.helpers.getLocations();
+
+		}, function errorCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error deleting location."
 			});
 
 		}); 

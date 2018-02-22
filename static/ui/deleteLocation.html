@@ -6,22 +6,15 @@
 		</button>
 	</h5>
 	<div class="card-body">
+		<form name="deleteLocation" ng-submit="main.data.helpers.deleteLocation(location)">
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<label class="input-group-text" for="inputGroupSelect01">Location</label>
-					</div>
-					<select ng-options="location as location.name for location in locations" class="custom-select" id="inputGroupSelect01" ng-model="location" ng-change="setLocation()">
-
-					</select>
-				</div>
+				<location-select ng-model="location"></location-select>
 			</div>
 		</div>
-
-		<div class="row">
+		<div class=row>
 			<div class="col-sm-12">
-				<a href="#" class="btn btn-primary" ng-click="deleteLocation()">Delete Location</a>
+				<input type="submit" class="btn btn-primary" value= "Delete Location">
 			</div>
 		</div>
 	</div>
