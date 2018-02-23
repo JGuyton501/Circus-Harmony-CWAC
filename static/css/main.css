@@ -1,18 +1,18 @@
 .navbar{
-background-color:#1E4258; 
+background:#1E4258; 
 font-family: Helvetica,Arial,sans-serif;
 }
 
 .btn-default{
 font-family: Helvetica,Arial,sans-serif;
-color: #ED2CB2; 
+background-color: #ED2CB2 !important; 
 text-align: center; 
 }
 
 /*buttons for schedule*/
 .btn-primary{
 font-family: Helvetica,Arial,sans-serif;
-color: #ED2CB2; 
+background-color: #ED2CB2 !important; 
 }
 
 .category{
@@ -55,7 +55,64 @@ font-family: Helvetica,Arial,sans-serif;
 }
 
 
+#schedule .past {
+    
+background-color: #B9B9B9;
+    
+color: #888;
 
+}
+
+
+
+#schedule .current {
+    
+font-weight: bold;
+
+
+}
+
+
+
+#schedule .future {
+    
+background-color: #B9B9B9;
+    
+font-style: italic;
+
+
+}
+
+
+#schedule .complete {
+    
+color: green;
+
+}
+
+
+#schedule .incomplete {
+
+
+
+}
+
+
+
+p.shift-date {
+   
+ margin-bottom: 0;
+
+}
+
+.adjust-shift {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 6px; 
+    font-size: 0.75em; 
+    margin: 0 auto;
+}
 
 
 /* settings */
