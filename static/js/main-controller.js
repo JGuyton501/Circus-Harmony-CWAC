@@ -11,6 +11,7 @@ app.config(function($interpolateProvider){
 		main.data = DataService;
 		main.uri = CIRCUS.uri;
 		console.log('main controller',main);
+		console.log('main.data: ', main.data);
 	};
 
 	main.init();
@@ -21,7 +22,7 @@ app.config(function($interpolateProvider){
 		pages["addShift"] = main.uri + "static/ui/addShift.html";
 		pages["addEmployee"] = main.uri + "static/ui/addEmployee.html";
 		pages["addCategory"] = main.uri + "static/ui/addCategory.html";
-		pages["addCategoryGrouping"] = main.uri + "static/ui/addCategoryGrouping.html";
+		pages["addCategoryGrouping"] = main.uri + "static/ui/addGrouping.html";
 		pages["addJob"] = main.uri + "static/ui/addJob.html";
 		pages["addLocation"] = main.uri + "static/ui/addLocation.html";
 		pages["deleteEmployee"] = main.uri + "static/ui/deleteEmployee.html";

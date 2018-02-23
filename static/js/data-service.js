@@ -12,8 +12,8 @@ app.service('DataService', function ($http) {
     DataService.jobs = DataService.jobs || [];
 
     DataService.init = function(){
-    	DataService.helpers.getBaseCategories();
     	DataService.helpers.getCategories();
+    	DataService.helpers.getGroupings();
 		DataService.helpers.getEmployees();
 		DataService.helpers.getLocations();
 		DataService.helpers.getShifts();
@@ -51,27 +51,27 @@ app.service('DataService', function ($http) {
 
     /* Getters */
 
-	DataService.helpers.getBaseCategories = function(){
+	DataService.helpers.getCategories = function(){
 
-		var config = DataService.utils.getConfig('baseCategories', 'get');
+		var config = DataService.utils.getConfig('categories', 'get');
 
 		$http(config).then(function successCallback(response) {
-
-			DataService.baseCategories = response.data;
+		
+			DataService.categories = response.data;
 
 		}, function errorCallback(response) {
 			DataService.utils.displayMessage({
 				"title": response.statusText,
-				"content": "There was an error getting base categories."
+				"content": "There was an error getting categories."
 			});
 		}); 
 
 	};
 
-	DataService.helpers.getCategories = function(){
+	DataService.helpers.getGroupings = function(){
 
 		//var config = DataService.utils.getConfig('/categories', 'get');
-		var config = DataService.utils.getConfig('baseCategories', 'get');
+		var config = DataService.utils.getConfig('groupings', 'get');
 
 		$http(config).then(function successCallback(response) {
 
@@ -213,36 +213,10 @@ app.service('DataService', function ($http) {
 
 	/* Setters */
 
-	DataService.helpers.addBaseCategory = function(baseCategory){
-console.log("adding base category: ", baseCategory);
-		var config = DataService.utils.getConfig('addBaseCategory', 'post');
-		config.data = baseCategory;
-
-		$http(config).then(function successCallback(response) {
-
-			DataService.utils.displayMessage({
-				"title": "Success",
-				"content": response.data.message
-			});
-
-			DataService.helpers.getBaseCategories();
-
-		}, function errorCallback(response) {
-
-			DataService.utils.displayMessage({
-				"title": response.statusText,
-				"content": "There was an error adding base category."
-			});
-
-		}); 
-
-	};
-
 	DataService.helpers.addCategory = function(category){
-		console.log("adding category grouping", category);
 		var config = DataService.utils.getConfig('addCategory', 'post');
 		config.data = category;
-
+console.log('category: ',category);
 		$http(config).then(function successCallback(response) {
 
 			DataService.utils.displayMessage({
@@ -263,7 +237,59 @@ console.log("adding base category: ", baseCategory);
 
 	};
 
+	DataService.helpers.deleteCategory = function(category_id){
+		console.log('catid: ', category_id);
+		var category=DataService.helpers.getCategoryById(category_id);
+		console.log('category: ', category);
+		var config = DataService.utils.getConfig('deleteCategory', 'post');
+		config.data = category;
+		$http(config).then(function successCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
+
+			DataService.helpers.getJobs();
+
+		}, function errorCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error deleting category."
+			});
+
+		}); 
+
+	};
+
+	DataService.helpers.addGrouping = function(grouping){
+		console.log("adding  grouping", grouping);
+		var config = DataService.utils.getConfig('addGrouping', 'post');
+		config.data = grouping;
+
+		$http(config).then(function successCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": "Success",
+				"content": response.data.message
+			});
+
+			DataService.helpers.getGroupings();
+
+		}, function errorCallback(response) {
+
+			DataService.utils.displayMessage({
+				"title": response.statusText,
+				"content": "There was an error adding grouping."
+			});
+
+		}); 
+
+	};
+
 	DataService.helpers.addEmployee = function(employee){
+		console.log('employee: ', employee);
 
 		var config = DataService.utils.getConfig('addEmployee', 'post');
 		config.data = employee;

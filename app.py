@@ -61,7 +61,7 @@ def createShift():
 
 @app.route('/admin/grouping')
 def createCategoryGrouping():
-    return render_template('addCategoryGrouping.html')
+    return render_template('addGrouping.html')
 
 @app.route('/admin/category')
 def createCategory():
@@ -125,7 +125,8 @@ def addEmployee():
         content.get('first_name'),
         content.get('last_name'),
         content.get('phone_number'),
-        content.get('email_address')
+        content.get('email_address'),
+        content.get('role')
         )
     db.session.add(employee)
     db.session.commit()
@@ -138,7 +139,7 @@ def addEmployee():
 @app.route('/deleteEmployee', methods=["POST"])
 def deleteEmployee():
     content = request.get_json()
-    delete_id = content.get('employee_id')
+    delete_id = content.get('id')
     if not delete_id:
         response = {
             'status': 403,
@@ -167,6 +168,7 @@ def getShifts():
             'date': s['date'],
             'start_time': s['start_time'],
             'end_time': s['end_time'],
+            'job_id': s['job_id'],
             'location': s['location'],
             'category_id': s['category_id'],
             'complete': s['complete'],
@@ -182,6 +184,7 @@ def addShift():
         content.get('date'),
         content.get('start_time'),
         content.get('end_time'),
+        content.get('job_id'),
         content.get('location'),
         None,
         content.get('complete'),
@@ -306,52 +309,7 @@ def deleteLocation():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-@app.route('/baseCategories', methods=["GET"])
-def getBaseCategories():
-    categories = db.session.query(models.BaseCategory).all()
-    response = []
-    for val in categories:
-        cat = val.__dict__
-        response.append({
-            'base_category_id': cat['base_category_id'],
-            'name': cat['name'],
-            })
-    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
-
-@app.route('/addBaseCategory', methods=['POST'])
-def addBaseCategory():
-    content = request.get_json()
-    location = models.BaseCategory(
-        content.get('name'),
-    )
-    db.session.add(location)
-    db.session.commit()
-    response = {
-        'status': 200,
-        'message': "Base category added to database",
-    }
-    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
-
-@app.route('/deleteBaseCategory', methods=['POST'])
-def deleteBaseCategory():
-    content = request.get_json()
-    delete_id = content.get('base_category_id')
-    if not delete_id:
-        response = {
-            'status': 403,
-            'message': "Category did not exist",
-        }
-        return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
-    category = db.session.query(models.BaseCategory).get(delete_id)
-    db.session.delete(category)
-    db.session.commit()
-    response = {
-        'status': 200,
-        'message': "Base category deleted.",
-    }
-    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
-
-@app.route('/categories')
+@app.route('/categories', methods=["GET"])
 def getCategories():
     categories = db.session.query(models.Category).all()
     response = []
@@ -359,25 +317,17 @@ def getCategories():
         cat = val.__dict__
         response.append({
             'category_id': cat['category_id'],
-            'job': cat['job'],
-            'location': cat['location'],
             'name': cat['name'],
-            'start_time': cat['start_time'],
-            'end_time': cat['end_time'],
             })
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
 @app.route('/addCategory', methods=['POST'])
 def addCategory():
     content = request.get_json()
-    location = models.Category(
+    category = models.Category(
         content.get('name'),
-        content.get('job'),
-        content.get('location'),
-        content.get('start_time'),
-        content.get('end_time')
     )
-    db.session.add(location)
+    db.session.add(category)
     db.session.commit()
     response = {
         'status': 200,
@@ -404,30 +354,81 @@ def deleteCategory():
     }
     return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
-@app.route('/updateCategory', methods=['POST'])
-def updateCategory():
-	content = request.get_json()
-	o_name = content.get('name')
-	o_job = content.get('job')
-	o_location = content.get('location')
-	o_start_time = parser.parse(content.get('start_time'))
-	o_end_time = parser.parse(content.get('end_time'))
-	new_category_name = content.get('new_category_name')
+@app.route('/groupings')
+def getGroupings():
+    groupings = db.session.query(models.Grouping).all()
+    response = []
+    for val in groupings:
+        cat = val.__dict__
+        response.append({
+            'grouping_id': cat['grouping_id'],
+            'job_id': cat['job_id'],
+            'location_id': cat['location_id'],
+            'category_id': cat['category_id'],
+            'start_time': cat['start_time'],
+            'end_time': cat['end_time'],
+            })
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
 
-	categories = db.session.query(models.Category).all()
-	for item in categories:
-		item_dict = item.__dict__
-		print item_dict
-		if item_dict['job'] == o_job and item_dict['location'] == o_location and utc.localize(item_dict['start_time']) >= o_start_time and utc.localize(item_dict['end_time']) <= o_end_time:
-			category = db.session.query(models.Category).get(item_dict['category_id'])
-			category.name = new_category_name
-			db.session.commit()
-
-	response = {
+@app.route('/addGrouping', methods=['POST'])
+def addGrouping():
+    content = request.get_json()
+    location = models.Grouping(
+        content.get('job_id'),
+        content.get('location_id'),
+        content.get('category_id'),
+        content.get('start_time'),
+        content.get('end_time')
+    )
+    db.session.add(location)
+    db.session.commit()
+    response = {
         'status': 200,
-        'message': "Categories updated.",
+        'message': "Grouping added to database",
     }
-	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '), default=dateconverter)
+
+@app.route('/deleteGrouping', methods=['POST'])
+def deleteGrouping():
+    content = request.get_json()
+    delete_id = content.get('grouping_id')
+    if not delete_id:
+        response = {
+            'status': 403,
+            'message': "Grouping did not exist",
+        }
+        return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+    category = db.session.query(models.Grouping).get(delete_id)
+    db.session.delete(grouping)
+    db.session.commit()
+    response = {
+        'status': 200,
+        'message': "Grouping deleted.",
+    }
+    return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+
+# @app.route('/updateGrouping', methods=['POST'])
+# def updateGrouping():
+# 	content = request.get_json()
+# 	o_job_id = content.get('job_id')
+#     o_location_id = content.get('location_id')
+# 	o_location_id = content.get('category_id')
+# 	o_start_time_id = parser.parse(content.get('start_time'))
+# 	o_end_time_id = parser.parse(content.get('end_time'))
+
+# 	groupings = db.session.query(models.Grouping).all()
+# 	for item in groupings:
+# 		item_dict = item.__dict__
+# 		print item_dict
+# 		if item_dict['job_id'] == o_job_id and item_dict['location_id'] == o_location_id and item_dict['category_id'] == o_category_id and utc.localize(item_dict['start_time']) >= o_start_time and utc.localize(item_dict['end_time']) <= o_end_time:
+# 			grouping = db.session.query(models.Grouping).get(item_dict['grouping_id'])
+# 			db.session.commit()
+
+# 	response = {
+#         'status': 200,
+#         'message': "Grouping updated.",
+#     }
+# 	return json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
 
 @app.route('/dbtest')
 def getDBStuff():
