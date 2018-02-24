@@ -47,7 +47,11 @@
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					</div>
-					<input type="text" class="form-control" placeholder="Role" aria-label="role" ng-model="employee.role" required/>
+					<select class="form-control" aria-label="role" ng-model="employee.role" required>
+						<option value="" selected disabled>Role</option>
+						<option value="admin">Admin</option>
+						<option value="normal">Normal</option>
+					</select>
 				</div>
 			</div>
 		</div>
