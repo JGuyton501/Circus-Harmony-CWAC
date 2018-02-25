@@ -13,16 +13,15 @@
 				<employee-select ng-model="shift.employee_id"></employee-select>
 			</div>
 			<div class="col-sm-6">
-				<category-select ng-model="shift.category"></category-select>
+				<category-select ng-model="shift.category_id"></category-select>
 			</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-6">
 				<location-select ng-model="shift.location"></location-select>
 			</div>
 			<div class="col-sm-6">
-
-
+				<job-select ng-model="shift.job_id"></job-select>
+			</div>
+			<div class="col-sm-12">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="inputGroupSelect01">Date</label>
@@ -30,8 +29,6 @@
 					<input type="date" class="form-control" aria-label="date" aria-describedby="basic-addon2" id="shift-date" ng-model="shift.date">
 				</div>
 			</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-6">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">

@@ -1,15 +1,6 @@
-{% block javascript %}
-    <script type="text/javascript">
-        {{ static_include('js/overview-controller.js') | safe }}
-    </script>
-{% endblock %}
-
-
-<div class="card">
+<div class="card dashboard-widget">
   <h5 class="card-header">Overview</h5>
   <div class="card-body">
- 
- 	<canvas id="overview-chart" width="200" height="200"></canvas>
- 	
+ 	<div id="overview-chart"></div>
   </div>
 </div>

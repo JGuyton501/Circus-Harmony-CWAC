@@ -1,6 +1,7 @@
 var app = app || angular.module('circusApp', []);
 
 app
+
 .directive("employeeSelect", function() {
 	var employee = this;
     return {
@@ -15,12 +16,13 @@ app
 })
 
 .directive("jobSelect", function() {
+	var job = this;
     return {
         template : '<div ng-include src="main.uri + \'static/ui/components/job.html\'"></div>',
         require: 'ngModel',
-		link : function(scope, element, attrs, ngModelCtrl){
-		    scope.updateModel = function(ngModel) {
-		        ngModelCtrl.$setViewValue(ngModel);
+		link : function(job, element, attrs, ngModelCtrl){
+		    job.updateJob = function(jobModel) {
+		        ngModelCtrl.$setViewValue(jobModel);
 		    }
 		}
     };
@@ -40,12 +42,13 @@ app
 })
 
 .directive("categorySelect", function() {
+	var category = this;
     return {
         template : '<div ng-include src="main.uri + \'static/ui/components/category.html\'"></div>',
         require: 'ngModel',
-		link : function(scope, element, attrs, ngModelCtrl){
-		    scope.updateModel = function(ngModel) {
-		        ngModelCtrl.$setViewValue(ngModel);
+		link : function(category, element, attrs, ngModelCtrl){
+		    category.updateCategory = function(categoryModel) {
+		        ngModelCtrl.$setViewValue(categoryModel);
 		    }
 		}
     };

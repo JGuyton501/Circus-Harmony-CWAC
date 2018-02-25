@@ -1,10 +1,7 @@
-<div>
-	<div class="input-group mb-3">
-	  <div class="input-group-prepend">
-	    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
-	  </div>
-	  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in main.data.employees" class="custom-select" id="inputGroupSelect01" ng-model="employeeModel" ng-change="updateEmployee(employeeModel.id)" >
-	  
-	  </select>
-	</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Employee</label>
+  </div>
+  <select ng-options="employee as employee.first_name + ' ' +employee.last_name for employee in main.data.employees" class="custom-select" id="inputGroupSelect01" ng-model="employeeModel" ng-change="updateEmployee(employeeModel.id)" >
+  </select>
 </div>

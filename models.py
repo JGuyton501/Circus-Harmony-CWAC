@@ -58,7 +58,7 @@ class Shift(db.Model):
         self.date = date
         self.start_time = start_time
         self.end_time = end_time
-        self.job = job
+        self.job_id = job_id
         self.location = location
         self.category_id = category_id
         self.complete = complete

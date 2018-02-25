@@ -8,9 +8,11 @@
 	<script src="{{ url_for('static', filename='js/dashboard-controller.js') }}"></script>
 {% endblock %}
 
+<br><br>
+
 <div ng-controller="DashboardController" id="dashboard">
 	
-
+{#
 <div class="row">
 	<div class="col-sm-8">
 
@@ -31,8 +33,28 @@
 		{% include 'dashboard/employees.html' %}
 	</div>
 </div>
+#}
+
+
+<div class="row">
+	<div class="col-xm-12 col-md-4 col-lg-4">
+		{% include 'dashboard/overview.html' %}
+	</div>
+	<div class="col-xm-12 col-md-4 col-lg-4">
+		{% include 'dashboard/notifications.html' %}
+	</div>
+	<div class="col-xm-12 col-md-4 col-lg-4">
+		{% include 'dashboard/employees.html' %}
+	</div>
+</div>
 
 
 </div>
+
+<style>
+.dashboard-widget {
+	margin-bottom: 2em;
+}
+</style>
 
 {% endblock %}

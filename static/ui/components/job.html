@@ -3,7 +3,7 @@
 	  <div class="input-group-prepend">
 	    <label class="input-group-text" for="inputGroupSelect01">Job</label>
 	  </div>
-	  <select ng-options="job as job.name for job in main.data.jobs" class="custom-select" id="inputGroupSelect01" ng-model="jobModel" ng-change="updateJob(jobModel.id)" > 
+	  <select ng-options="job as job.name for job in main.data.jobs" class="custom-select" id="inputGroupSelect01" ng-model="jobModel" ng-change="updateJob(jobModel.job_id)" > 
 	  </select>
 	</div>
 </div>

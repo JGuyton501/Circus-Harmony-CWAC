@@ -1,9 +1,7 @@
-<div>
-	<div class="input-group mb-3">
-	  <div class="input-group-prepend">
-	    <label class="input-group-text" for="inputGroupSelect01">Category</label>
-	  </div>
-	  <select ng-options="cateogry as category.name for category in main.data.categories" class="custom-select" id="inputGroupSelect01" ng-model="categoryModel" ng-change="updateCategory(categoryModel.id)" >	  
-	  </select>
-	</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Category</label>
+  </div>
+  <select ng-options="category as category.name for category in main.data.categories" class="custom-select" id="inputGroupSelect01" ng-model="categoryModel" ng-change="updateCategory(categoryModel.category_id)" >
+  </select>
 </div>

@@ -186,7 +186,7 @@ def addShift():
         content.get('end_time'),
         content.get('job_id'),
         content.get('location'),
-        None,
+        content.get('category_id'),
         content.get('complete'),
         content.get('comments')
     )

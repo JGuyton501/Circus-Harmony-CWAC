@@ -6,6 +6,7 @@ app.service('DataService', function ($http) {
     DataService.helpers = {};
     DataService.utils = {};
     DataService.categories = DataService.categories || [];
+    DataService.groupings = DataService.groupings || [];
     DataService.locations = DataService.locations || [];
     DataService.employees = DataService.employees || [];
     DataService.shifts = DataService.shifts || [];
@@ -70,17 +71,16 @@ app.service('DataService', function ($http) {
 
 	DataService.helpers.getGroupings = function(){
 
-		//var config = DataService.utils.getConfig('/categories', 'get');
 		var config = DataService.utils.getConfig('groupings', 'get');
 
 		$http(config).then(function successCallback(response) {
 
-			DataService.categories = response.data;
+			DataService.groupings = response.data;
 
 		}, function errorCallback(response) {
 			DataService.utils.displayMessage({
 				"title": response.statusText,
-				"content": "There was an error getting categories."
+				"content": "There was an error getting groupings."
 			});
 		}); 
 
