@@ -1,6 +1,6 @@
 var app = app || angular.module('circusApp', []);
 
-app.service('DataService', function ($http) {
+app.service('DataService', function ($http, $rootScope) {
 
     var DataService = {};
     DataService.helpers = {};
@@ -9,16 +9,16 @@ app.service('DataService', function ($http) {
     DataService.groupings = DataService.groupings || [];
     DataService.locations = DataService.locations || [];
     DataService.employees = DataService.employees || [];
-    DataService.shifts = DataService.shifts || [];
     DataService.jobs = DataService.jobs || [];
+    DataService.shifts = DataService.shifts || [];
 
     DataService.init = function(){
     	DataService.helpers.getCategories();
     	DataService.helpers.getGroupings();
 		DataService.helpers.getEmployees();
 		DataService.helpers.getLocations();
-		DataService.helpers.getShifts();
 		DataService.helpers.getJobs();
+		DataService.helpers.getShifts();
     };
 
     /* Utilities */
@@ -127,6 +127,7 @@ app.service('DataService', function ($http) {
 		$http(config).then(function successCallback(response) {
 
 			DataService.shifts = response.data;
+			DataService.helpers.getStatistics();
 
 		}, function errorCallback(response) {
 			DataService.utils.displayMessage({
@@ -466,6 +467,80 @@ console.log('category: ',category);
 
 	};
 
+
+
+
+
+	/* statistics for charts */
+    DataService.helpers.getStatistics = function(){
+
+        DataService.statistics = DataService.statistics || {};
+        DataService.statistics.categories = DataService.statistics.categories || {};
+        DataService.statistics.categories.name = 'categories';
+        DataService.statistics.locations = DataService.statistics.locations || {};
+        DataService.statistics.locations.name = 'locations';
+        DataService.statistics.jobs = DataService.statistics.jobs || {};
+        DataService.statistics.jobs.name = 'jobs';
+
+        /* statistics based on shifts */
+        for (var i =  DataService.shifts.length - 1; i >= 0; i--) {
+
+            /* category statistics */
+            var categoryId = DataService.shifts[i].category_id;
+            DataService.statistics.categories[categoryId] = DataService.statistics.categories[categoryId] || {};
+            DataService.statistics.categories[categoryId].count = DataService.statistics.categories[categoryId].count || 0;
+            DataService.statistics.categories[categoryId].count++;
+            
+            /* location statistics */
+            var locationId = DataService.shifts[i].location;
+            DataService.statistics.locations[locationId] = DataService.statistics.locations[locationId] || {};
+            DataService.statistics.locations[locationId].count = DataService.statistics.locations[locationId].count || 0;
+            DataService.statistics.locations[locationId].count++;
+            
+            /* job statistics */
+            var jobId = DataService.shifts[i].job_id;
+            DataService.statistics.jobs[jobId] = DataService.statistics.jobs[jobId] || {};
+            DataService.statistics.jobs[jobId].count = DataService.statistics.jobs[jobId].count || 0;
+            DataService.statistics.jobs[jobId].count++;
+            
+        }
+
+        /* category details */
+        for (var i =  DataService.categories.length - 1; i >= 0; i--) {
+
+        	var categoryId = DataService.categories[i].category_id;
+        	var categoryName = DataService.categories[i].name;
+        	DataService.statistics.categories[categoryId] = DataService.statistics.categories[categoryId] || {};
+        	DataService.statistics.categories[categoryId].count = DataService.statistics.categories[categoryId].count || 0;
+        	DataService.statistics.categories[categoryId].name = categoryName;
+
+        }
+
+        /* location details */
+        for (var i =  DataService.locations.length - 1; i >= 0; i--) {
+
+        	var locationId = DataService.locations[i].location_id;
+        	var locationName = DataService.locations[i].name;
+        	DataService.statistics.locations[locationId] = DataService.statistics.locations[locationId] || {};
+        	DataService.statistics.locations[locationId].count = DataService.statistics.locations[locationId].count || 0;
+        	DataService.statistics.locations[locationId].name = locationName;
+
+        }
+
+        /* job details */
+        for (var i =  DataService.jobs.length - 1; i >= 0; i--) {
+
+        	var jobId = DataService.jobs[i].job_id;
+        	var jobName = DataService.jobs[i].name;
+        	DataService.statistics.jobs[jobId] = DataService.statistics.jobs[jobId] || {};
+        	DataService.statistics.jobs[jobId].count = DataService.statistics.jobs[jobId].count || 0;
+        	DataService.statistics.jobs[jobId].name = jobName;
+
+        }
+
+		$rootScope.$broadcast('statistics-loaded');
+
+    };
 
 	DataService.init();
 
