@@ -50,6 +50,15 @@ app.service('DataService', function ($http, $rootScope) {
 
 	};
 
+	DataService.utils.getDurationBetween = function(time1, time2){
+		var ms = moment(time2).diff(moment(time1));
+		return ms;
+		/*
+		var d = moment.duration(ms);
+		var hours = d.hours();
+		*/
+	};
+
     /* Getters */
 
 	DataService.helpers.getCategories = function(){

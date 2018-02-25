@@ -8,52 +8,47 @@
 	<script src="{{ url_for('static', filename='js/dashboard-controller.js') }}"></script>
 {% endblock %}
 
-<br><br>
-
 <div ng-controller="DashboardController" id="dashboard">
-	
-{#
-<div class="row">
-	<div class="col-sm-8">
 
-		<div class="row">
-			<div class="col-sm-5" >
-				{% include 'dashboard/overview.html' %}
+	<div class="row">
+		<div class="col-lg-9 col-md-9 col-sm-12">
+
+			<div class="row">
+				<div class="col-lg-5 col-md-6 col-sm-6">
+					{% include 'dashboard/overview.html' %}
+				</div>
+				<div class="col-lg-7 col-md-6 col-sm-6">
+					{% include 'dashboard/notifications.html' %}
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					{% include 'dashboard/category-hours.html' %}
+				</div>
 			</div>
-			<div class="col-sm-7" >
-				{% include 'dashboard/notifications.html' %}
-			</div>
-			<div class="col-sm-12" >
-				{% include 'dashboard/category-hours.html' %}
-			</div>
+			
 		</div>
-		
+		<div class="col-lg-3 col-md-3 col-sm-12">
+			{% include 'dashboard/employees.html' %}
+		</div>
 	</div>
-	<div class="col-sm-4">
-		{% include 'dashboard/employees.html' %}
-	</div>
-</div>
-#}
-
-
-<div class="row">
-	<div class="col-xm-12 col-md-4 col-lg-4">
-		{% include 'dashboard/overview.html' %}
-	</div>
-	<div class="col-xm-12 col-md-4 col-lg-4">
-		{% include 'dashboard/notifications.html' %}
-	</div>
-	<div class="col-xm-12 col-md-4 col-lg-4">
-		{% include 'dashboard/employees.html' %}
-	</div>
-</div>
-
 
 </div>
 
 <style>
 .dashboard-widget {
 	margin-bottom: 2em;
+    min-height: 400px;
+}
+.dashboard-widget-tall {
+	margin-bottom: 2em;
+    min-height: 100%;
+}
+.card-body {
+	max-height: 350px;
+	overflow-y: visible;
+	overflow: hidden;
+}
+body {
+	background-color: rgb(224,224,224);
 }
 </style>
 

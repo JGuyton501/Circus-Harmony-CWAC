@@ -1,15 +1,8 @@
-{% block javascript %}
-    <script type="text/javascript">
-        {{ static_include('js/category-controller.js') | safe }}
-    </script>
-{% endblock %}
-
-
-<div class="card" ng-controller="CategoryController">
-  <h5 class="card-header">Category Hours By Location</h5>
+<div class="card dashboard-widget">
+  <h5 class="card-header">Category Count By Location</h5>
   <div class="card-body">
- 
-    <canvas id="categories-chart" width="400" height="400"></canvas>
-    
+    <div id="stacked-chart">
+    	<em>Loading...</em>
+    </div>
   </div>
 </div>
