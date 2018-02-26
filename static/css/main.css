@@ -1,57 +1,54 @@
+html {
+    font-family: Helvetica,Arial,sans-serif;
+}
 .navbar{
 background:#1E4258; 
-font-family: Helvetica,Arial,sans-serif;
+
 }
 
 .btn-default{
-font-family: Helvetica,Arial,sans-serif;
+
 background-color: #ED2CB2 !important; 
 text-align: center; 
 }
 
 /*buttons for schedule*/
-.btn-primary{
-font-family: Helvetica,Arial,sans-serif;
-background-color: #ED2CB2 !important; 
-}
+
 
 .category{
-font-family: Helvetica,Arial,sans-serif;
+
 font-size: X-large; 
 color: #5D5D5D;
 }
 
 .location{
-font-family: Helvetica,Arial,sans-serif;
+
 font-size: medium; 
 color: #5D5D5D;
 }
 
 .shift-date{
-font-family: Helvetica,Arial,sans-serif;
+
 color: #5D5D5D;
 font-size: large; 
 }
 
 input.confirmation-check{
  width: 30px;
-  height: 30px;
+height: 30px;
 background: #C7C7C7; 
 }
 
 
 .shift-time{
-font-family: Helvetica,Arial,sans-serif;
+
 font-size: medium; 
 color: #5D5D5D;
 }
 
 .list-group list-group-flush{
-font-family: Helvetica,Arial,sans-serif; 
+
 text-align: center; 
-}
-.card-header{
-font-family: Helvetica,Arial,sans-serif;
 }
 
 
@@ -86,7 +83,7 @@ font-style: italic;
 
 #schedule .complete {
     
-color: green;
+color: #19C90A;
 
 }
 
@@ -112,6 +109,8 @@ p.shift-date {
     padding: 6px; 
     font-size: 0.75em; 
     margin: 0 auto;
+    background-color: #E538D1; 
+
 }
 
 
@@ -126,7 +125,7 @@ p.shift-date {
 
 .settings-buttons ul {
 	padding-bottom: 2em;
-
+    color: #FFFFFF;
 }
 
 .settings-buttons li {
@@ -138,7 +137,7 @@ p.shift-date {
 }
 
 .settings-buttons li > a {
-    background: #6610f2;
+    background: #E538D1;
     padding: 1em 3em;
     font-weight: 500;
     color: #fff;
@@ -149,5 +148,5 @@ p.shift-date {
     font-weight: 900;
     color: #000;
     width: 100%;
-    text-align: left;
+    text-align: left; 
 }
