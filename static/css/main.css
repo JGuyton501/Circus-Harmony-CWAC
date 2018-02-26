@@ -1,6 +1,25 @@
-html {
+/* main */
+html, body {
     font-family: Helvetica,Arial,sans-serif;
+    background-color: rgb(224,224,224);
 }
+
+/* cards / widgets */
+.card-header {
+    padding: .5rem;
+    font-weight: 600;
+    font-size: 14px;
+}
+#dashboard .dashboard-widget {
+    margin-bottom: 2em;
+    min-height: 400px;
+}
+#dashboard .dashboard-widget-tall {
+    margin-bottom: 2em;
+    min-height: 100%;
+}
+/* navigation */
+
 .navbar{
 background:#1E4258; 
 
@@ -52,54 +71,33 @@ text-align: center;
 }
 
 
+
+/* schedule */
+
 #schedule .past {
-    
-background-color: #B9B9B9;
-    
-color: #888;
-
+    background-color: #B9B9B9;
+    color: #888;
 }
-
-
 
 #schedule .current {
-    
-font-weight: bold;
-
-
+    font-weight: bold;
 }
-
-
 
 #schedule .future {
-    
-background-color: #B9B9B9;
-    
-font-style: italic;
-
-
+    background-color: #B9B9B9;
+    font-style: italic;
 }
-
 
 #schedule .complete {
-    
-color: #19C90A;
-
+    color: #19C90A;
 }
-
 
 #schedule .incomplete {
 
-
-
 }
 
-
-
 p.shift-date {
-   
- margin-bottom: 0;
-
+   margin-bottom: 0;
 }
 
 .adjust-shift {
@@ -112,6 +110,7 @@ p.shift-date {
     background-color: #E538D1; 
 
 }
+
 
 
 /* settings */

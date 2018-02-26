@@ -1,13 +1,15 @@
 <div class="card dashboard-widget">
-  <h5 class="card-header">
-	  Shift Overview
-	  <select ng-options="statistic as statistic.name for statistic in main.data.statistics" ng-model="statistic" ng-change="renderOverviewChart(statistic.name)" ng-selected="statistic.name">
-	  </select>
-  </h5>
-
-  <div class="card-body">
- 	<div id="overview-chart">
- 		<em>Loading...</em>
- 	</div>
-  </div>
+	<div class="card-header">
+		Shift Overview
+		<div class="float-right">
+			<select ng-options="statistic as statistic.name for statistic in main.data.statistics" ng-model="statistic" ng-change="renderOverviewChart(statistic.name)" ng-class="form-control">
+				<option value="" selected disabled>Choose overview</option>
+			</select>
+		</div>
+	</div>
+	<div class="card-body">
+		<div id="overview-chart">
+			<em>Loading...</em>
+		</div>
+	</div>
 </div>
