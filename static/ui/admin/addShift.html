@@ -10,8 +10,7 @@
 	<form name="shiftForm" ng-submit="main.data.helpers.addShift(shift); shift=null">
 		<div class="row">
 			<div class="col-sm-6">
-				My Name
-				<input type="hidden" ng-model="shift.employee_id" value="{{user}}">
+				<employee-select ng-model="shift.employee_id"></employee-select>
 			</div>
 			<div class="col-sm-6">
 				<category-select ng-model="shift.category_id"></category-select>

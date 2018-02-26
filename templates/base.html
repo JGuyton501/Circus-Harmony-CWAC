@@ -25,6 +25,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
           </li>
+          <li class="nav-item">
+          	<a href="#" ng-click="main.open('addShift')" class="nav-link">Add Shift</a>
+          </li>
+          <li class="nav-item">
+          	<a href="#" ng-click="main.open('scheduleView')" class="nav-link">Schedule</a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
 
@@ -72,7 +78,7 @@
 
 	<!-- Update Modal -->
 	<div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="message" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-dialog modal-dialog-centered" ng-class="{'modal-lg': main.currentUISize=='large'}" role="document">
 			<div class="modal-content" ng-include src="main.getCurrentUI()">
 			</div>
 		</div>

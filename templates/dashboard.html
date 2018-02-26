@@ -6,6 +6,7 @@
 
 {% block javascript %}
 	<script src="{{ url_for('static', filename='js/dashboard-controller.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/schedule-controller.js') }}"></script>
 {% endblock %}
 
 <div ng-controller="DashboardController" id="dashboard">
@@ -46,6 +47,7 @@
 	max-height: 350px;
 	overflow-y: visible;
 	overflow: hidden;
+	padding: 0 !important;
 }
 body {
 	background-color: rgb(224,224,224);

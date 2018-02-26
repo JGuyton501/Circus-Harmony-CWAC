@@ -20,15 +20,17 @@ app.config(function($interpolateProvider){
 
 		var pages = []
 		pages["addShift"] = main.uri + "static/ui/addShift.html";
-		pages["addEmployee"] = main.uri + "static/ui/addEmployee.html";
-		pages["addCategory"] = main.uri + "static/ui/addCategory.html";
-		pages["addCategoryGrouping"] = main.uri + "static/ui/addGrouping.html";
-		pages["addJob"] = main.uri + "static/ui/addJob.html";
-		pages["addLocation"] = main.uri + "static/ui/addLocation.html";
-		pages["deleteEmployee"] = main.uri + "static/ui/deleteEmployee.html";
-		pages["deleteLocation"] = main.uri + "static/ui/deleteLocation.html";
-		pages["deleteJob"] = main.uri + "static/ui/deleteJob.html";
-		pages["deleteCategory"] = main.uri + "static/ui/deleteCategory.html";
+		pages["scheduleView"] = main.uri + "static/ui/schedulePopup.html";
+		pages["admin/addShift"] = main.uri + "static/ui/admin/addShift.html";
+		pages["admin/addEmployee"] = main.uri + "static/ui/admin/addEmployee.html";
+		pages["admin/addCategory"] = main.uri + "static/ui/admin/addCategory.html";
+		pages["admin/addCategoryGrouping"] = main.uri + "static/ui/admin/addGrouping.html";
+		pages["admin/addJob"] = main.uri + "static/ui/admin/addJob.html";
+		pages["admin/addLocation"] = main.uri + "static/ui/admin/addLocation.html";
+		pages["admin/deleteEmployee"] = main.uri + "static/ui/admin/deleteEmployee.html";
+		pages["admin/deleteLocation"] = main.uri + "static/ui/admin/deleteLocation.html";
+		pages["admin/deleteJob"] = main.uri + "static/ui/admin/deleteJob.html";
+		pages["admin/deleteCategory"] = main.uri + "static/ui/admin/deleteCategory.html";
 
 		if (!pages[page]){
 			DataService.utils.displayMessage({
@@ -39,6 +41,13 @@ app.config(function($interpolateProvider){
 		}
 
 		main.currentUI = pages[page];
+
+		var largeUIArray = ["scheduleView"];
+		if (largeUIArray.indexOf(page)!==-1){ 
+			main.currentUISize = "large";
+		} else {
+			main.currentUISize = "normal";
+		}
 
 		$('#update-modal').modal({
 			keyboard: false,
